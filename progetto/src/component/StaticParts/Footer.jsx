@@ -56,11 +56,23 @@ function Footer() {
           </ul>
         </Col>
         <Col>
-          <h4>Seguici su:</h4>
-          <FaInstagram size="30px" className="mx-2" />
-          <FaLinkedin size="30px" className="mx-2" />
-          <FaTwitter size="30px" className="mx-2" />
-          <FaFacebookSquare size="30px" className="mx-2" />
+          <h4 className="mb-4">Seguici su:</h4>
+          <a href="#">
+            {" "}
+            <FaInstagram size="30px" className="mx-2" />
+          </a>
+          <a href="#">
+            {" "}
+            <FaLinkedin size="30px" className="mx-2" />
+          </a>
+          <a href="#">
+            {" "}
+            <FaTwitter size="30px" className="mx-2" />
+          </a>
+          <a href="#">
+            {" "}
+            <FaFacebookSquare size="30px" className="mx-2" />
+          </a>
         </Col>
       </Row>
 

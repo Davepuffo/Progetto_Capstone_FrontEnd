@@ -7,6 +7,7 @@ import { GrCreditCard } from "react-icons/gr";
 import { LiaShippingFastSolid } from "react-icons/lia";
 import { AiOutlineMessage } from "react-icons/ai";
 import { PiArrowCounterClockwiseBold } from "react-icons/pi";
+import { Button } from "react-bootstrap";
 
 function HomePage() {
   const [index, setIndex] = useState(0);
@@ -80,16 +81,18 @@ function HomePage() {
         </Col>
       </Row>
 
-      <Row className="my-3 bg-success py-4">
-        <Col>
+      <Row className="my-3 bg-success py-4 align-items-center">
+        <Col xs={12} md={6}>
           <h4>
             Iscriviti alla nostra newletter per rimanere aggiornato su sconti e
             offerte
           </h4>
         </Col>
-        <Col>
-          <Form.Label>Email:</Form.Label>
-          <Form.Control type="mail" />
+        <Col xs={12} md={6}>
+          <Form>
+            <Form.Control type="mail" />
+            <Button className="mt-2">Invia!</Button>
+          </Form>
         </Col>
       </Row>
 

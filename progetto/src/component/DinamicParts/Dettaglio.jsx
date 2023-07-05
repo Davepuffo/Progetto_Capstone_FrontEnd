@@ -6,15 +6,15 @@ import { Button } from "react-bootstrap";
 import {
   addCart,
   addFavourite,
+  removeCart,
   removeFavourite,
 } from "../../redux/actions/UserActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function Dettaglio() {
-  const url = "http://localhost:8080/articolo/1";
+  const url = "http://localhost:8080/articolo/2";
   const [prodotto, setProdotto] = useState({});
   const dispatch = useDispatch();
-  const favourite = useSelector((state) => state.user.favourite);
 
   try {
     fetch(url)
@@ -27,10 +27,10 @@ function Dettaglio() {
   return (
     <Container className="my-5">
       <Row>
-        <Col xs={6}>
-          <img src={prodotto.foto} alt="" style={{ height: "300px" }} />
+        <Col xs={4} md={6}>
+          <img src={prodotto.foto} alt="" style={{ height: "200px" }} />
         </Col>
-        <Col xs={6} className="text-start">
+        <Col xs={8} md={6} className="text-start">
           <div>
             <h3>{prodotto.nome}</h3>
           </div>
