@@ -13,8 +13,8 @@ import Profilo from './component/DinamicParts/Profilo';
 function App() {
   return (
     <div className="App">
-      <NavBar />
       <BrowserRouter>
+        <NavBar />
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/*" element={<NotFound />} />
@@ -23,8 +23,8 @@ function App() {
           <Route path='/dettaglio' element={<Dettaglio />} />
 
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </div>
   );
 }

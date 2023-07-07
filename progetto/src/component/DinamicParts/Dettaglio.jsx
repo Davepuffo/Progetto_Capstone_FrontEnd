@@ -1,28 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Button } from "react-bootstrap";
-import {
-  addCart,
-  addFavourite,
-  removeCart,
-  removeFavourite,
-} from "../../redux/actions/UserActions";
+import { ADD_CART, addCart } from "../../redux/actions/CartAction";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  ADD_FAVOURITE,
+  addFavourite,
+} from "../../redux/actions/FavouriteAction";
 
 function Dettaglio() {
   const url = "http://localhost:8080/articolo/2";
-  const [prodotto, setProdotto] = useState({});
+  const [prodotto, setProdotto] = useState([]);
   const dispatch = useDispatch();
 
-  try {
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => setProdotto(data));
-  } catch (error) {
-    console.error(error);
-  }
+  const getProdotto = () => {
+    try {
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => setProdotto(data));
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getProdotto();
+  }, []);
 
   return (
     <Container className="my-5">

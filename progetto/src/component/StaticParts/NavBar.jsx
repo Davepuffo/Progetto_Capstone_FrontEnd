@@ -17,13 +17,17 @@ import {
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate, useNavigate } from "react-router-dom";
+import { REMOVE_CART } from "../../redux/actions/CartAction";
+import { FaTrash } from "react-icons/fa";
 
 function NavBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const user = useSelector((state) => state.user);
   console.log(user);
-  const cart = useSelector((state) => state.user.cart);
+  const cart = useSelector((state) => state.cart.cart.items);
   console.log(cart);
   //Offcanvas per carrello
   const [show, setShow] = useState(false);
@@ -43,7 +47,13 @@ function NavBar() {
             <Navbar.Toggle aria-controls="navbarScroll" />
           </Col>
           <Col xs={5} md={3}>
-            <Navbar.Brand href="http://localhost:3000/home">Logo</Navbar.Brand>
+            <Navbar.Brand
+              onClick={() => {
+                navigate("/home");
+              }}
+            >
+              Logo
+            </Navbar.Brand>
           </Col>
           <Col>
             <Navbar.Collapse id="navbarScroll">
@@ -116,7 +126,14 @@ function NavBar() {
                         </h4>
                       </Col>
                     </Row>
-                    <Button className="w-100 my-2">Visualizza profilo</Button>
+                    <Button
+                      onClick={() => {
+                        navigate("/profile");
+                      }}
+                      className="w-100 my-2"
+                    >
+                      Visualizza profilo
+                    </Button>
                   </Dropdown.Item>
                   <Dropdown.Divider />
                   <div className="mx-3">
@@ -143,7 +160,7 @@ function NavBar() {
                   <Offcanvas.Title>Carrello</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  {cart == null ? (
+                  {cart[0] == null ? (
                     <Card.Body>
                       <Card.Title>
                         Non ci sono prodotti nel tuo carrello
@@ -152,8 +169,8 @@ function NavBar() {
                       <Card.Text className="m-0"></Card.Text>
                     </Card.Body>
                   ) : (
-                    <Card.Body>
-                      <Card.Title>
+                    cart.map((cart, i) => (
+                      <Card.Body key={i}>
                         <Row>
                           <Col xs={3}>
                             <img
@@ -167,11 +184,32 @@ function NavBar() {
                             <br />
                             <br />
                             {cart.prezzo}€ - Quantità = 1
+                            <Button
+                              variant="danger"
+                              onClick={() => {
+                                dispatch({
+                                  type: REMOVE_CART,
+                                  payload: i,
+                                });
+                              }}
+                            >
+                              <FaTrash />
+                            </Button>
                           </Col>
                         </Row>
-                      </Card.Title>
-                      <Card.Text className="m-0"></Card.Text>
-                    </Card.Body>
+                      </Card.Body>
+                    ))
+                  )}
+                  {cart[0] == null ? null : (
+                    <Col sm={12} className="font-weight-bold mb-3 ml-4">
+                      <p className="d-inline">TOTALE: </p>
+                      {cart.reduce(
+                        (acc, currentValue) =>
+                          acc + parseFloat(currentValue.prezzo),
+                        0
+                      )}
+                      €
+                    </Col>
                   )}
                 </Offcanvas.Body>
               </Offcanvas>
