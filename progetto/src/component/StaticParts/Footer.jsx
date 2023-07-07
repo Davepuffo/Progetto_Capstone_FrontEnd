@@ -10,7 +10,7 @@ import {
 
 function Footer() {
   return (
-    <Container fluid className="bg-dark text-white">
+    <Container fluid className="bg-dark text-white text-center">
       <Row className="flex-column py-3">
         <Col>
           <p>Logo</p>

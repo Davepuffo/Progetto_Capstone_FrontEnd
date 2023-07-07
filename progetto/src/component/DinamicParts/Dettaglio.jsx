@@ -9,17 +9,20 @@ import {
   ADD_FAVOURITE,
   addFavourite,
 } from "../../redux/actions/FavouriteAction";
+import { useParams } from "react-router-dom";
 
 function Dettaglio() {
-  const url = "http://localhost:8080/articolo/2";
+  const url = "http://localhost:8080/catalogo/articolo/id/";
   const [prodotto, setProdotto] = useState([]);
   const dispatch = useDispatch();
+  const param = useParams();
+  console.log(param);
 
   const getProdotto = () => {
     try {
-      fetch(url)
+      fetch(url + param.id)
         .then((response) => response.json())
-        .then((data) => setProdotto(data));
+        .then((data) => setProdotto(data[0]));
     } catch (error) {
       console.error(error);
     }
@@ -32,7 +35,7 @@ function Dettaglio() {
   return (
     <Container className="my-5">
       <Row>
-        <Col xs={4} md={6}>
+        <Col xs={4} md={6} className="text-center">
           <img src={prodotto.foto} alt="" style={{ height: "200px" }} />
         </Col>
         <Col xs={8} md={6} className="text-start">

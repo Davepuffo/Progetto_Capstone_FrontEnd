@@ -23,7 +23,7 @@ function HomePage() {
         onSelect={handleSelect}
         style={{ height: "350px" }}
       >
-        <Carousel.Item className="h-100" interval={2000}>
+        <Carousel.Item className="h-100 text-center" interval={2000}>
           <img
             className="d"
             src="http://placekitten.com/800/350"

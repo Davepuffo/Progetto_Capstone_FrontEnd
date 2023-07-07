@@ -9,6 +9,7 @@ import Register from './component/DinamicParts/Register';
 import Dettaglio from './component/DinamicParts/Dettaglio';
 import NotFound from './component/DinamicParts/NotFound';
 import Profilo from './component/DinamicParts/Profilo';
+import Catalogo from './component/DinamicParts/Catalogo';
 
 function App() {
   return (
@@ -18,10 +19,10 @@ function App() {
         <Routes>
           <Route path="/home" element={<HomePage />} />
           <Route path="/*" element={<NotFound />} />
+          <Route path="/catalogo/:animale" element={<Catalogo />} />
           <Route path='/profile' element={<Profilo />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/dettaglio' element={<Dettaglio />} />
-
+          <Route path='/catalogo/articolo/id/:id' element={<Dettaglio />} />
         </Routes>
         <Footer />
       </BrowserRouter>

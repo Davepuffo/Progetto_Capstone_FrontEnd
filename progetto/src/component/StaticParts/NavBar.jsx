@@ -17,7 +17,7 @@ import {
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { REMOVE_CART } from "../../redux/actions/CartAction";
 import { FaTrash } from "react-icons/fa";
 
@@ -26,20 +26,26 @@ function NavBar() {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.user);
-  console.log(user);
   const cart = useSelector((state) => state.cart.cart.items);
-  console.log(cart);
+
   //Offcanvas per carrello
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //Search bar
+  const [query, setQuery] = useState("");
+  console.log(query);
+  const handleChange = (e) => {
+    setQuery(e.target.value);
+  };
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary p-0">
       <Container fluid className="flex-column p-0">
         <Row className="bg-dark w-100 text-white">
           <Col>
-            <p className="my-0">Spedizione Gratuita sopra i 50€</p>
+            <p className="my-0 text-center">Spedizione Gratuita sopra i 50€</p>
           </Col>
         </Row>
         <Row className="w-100 align-items-center py-2 my-4">
@@ -47,13 +53,7 @@ function NavBar() {
             <Navbar.Toggle aria-controls="navbarScroll" />
           </Col>
           <Col xs={5} md={3}>
-            <Navbar.Brand
-              onClick={() => {
-                navigate("/home");
-              }}
-            >
-              Logo
-            </Navbar.Brand>
+            <Link to={"/home"}>Logo</Link>
           </Col>
           <Col>
             <Navbar.Collapse id="navbarScroll">
@@ -63,7 +63,13 @@ function NavBar() {
                 navbarScroll
               >
                 <NavDropdown title="Cane" id="navbarScrollingDropdown">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                  <NavDropdown.Item
+                    onClick={() => {
+                      navigate("/catalogo/cane");
+                    }}
+                  >
+                    Tutti i prodotti per il tuo cane
+                  </NavDropdown.Item>
                   <NavDropdown.Item href="#action4">
                     Another action
                   </NavDropdown.Item>
@@ -103,9 +109,15 @@ function NavBar() {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={handleChange}
               />
-              <Button variant="outline-success">
-                <AiOutlineSearch />
+              <Button
+                onClick={() => {
+                  navigate("/catalogo/cerca/" + query);
+                }}
+                variant="outline-transparent"
+              >
+                <AiOutlineSearch size="30px" />
               </Button>
             </Form>
           </Col>
