@@ -25,7 +25,8 @@ function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
+  console.log(user);
   const cart = useSelector((state) => state.cart.cart.items);
 
   //Offcanvas per carrello
@@ -213,15 +214,41 @@ function NavBar() {
                     ))
                   )}
                   {cart[0] == null ? null : (
-                    <Col sm={12} className="font-weight-bold mb-3 ml-4">
-                      <p className="d-inline">TOTALE: </p>
-                      {cart.reduce(
-                        (acc, currentValue) =>
-                          acc + parseFloat(currentValue.prezzo),
-                        0
-                      )}
-                      €
-                    </Col>
+                    <>
+                      <Col sm={12} className="font-weight-bold mb-3 ml-4">
+                        <p className="d-inline">TOTALE: </p>
+                        {cart.reduce(
+                          (acc, currentValue) =>
+                            acc + parseFloat(currentValue.prezzo),
+                          0
+                        )}
+                        €
+                      </Col>
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          cart.map((item, i) => {
+                            dispatch({
+                              type: REMOVE_CART,
+                              payload: i,
+                            });
+                          });
+                        }}
+                      >
+                        Svuota carrello
+                      </Button>
+                      <Button>
+                        <Link
+                          to={"/carrello"}
+                          onClick={() => {
+                            setShow(false);
+                          }}
+                          className="text-white"
+                        >
+                          Procedi con l'acquisto
+                        </Link>
+                      </Button>
+                    </>
                   )}
                 </Offcanvas.Body>
               </Offcanvas>

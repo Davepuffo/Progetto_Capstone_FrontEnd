@@ -2,7 +2,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 
 function Profilo() {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
 
   return (
     <Container>
@@ -19,9 +19,12 @@ function Profilo() {
           {user.indirizziUtente[0] == null ? (
             <div>Non ci sono indirizzi inseriti per questo profilo</div>
           ) : (
-            user.indirizziUtente.map((indirizzo) => {
-              <div>{indirizzo.via}</div>;
-            })
+            user.indirizziUtente.map((indirizzo) => (
+              <p>
+                Via {indirizzo.via} {indirizzo.civico}, {indirizzo.citta} (
+                {indirizzo.provincia}) - indirizzo di {indirizzo.tipo}{" "}
+              </p>
+            ))
           )}
         </Col>
         <Col xs={12} md={6}>

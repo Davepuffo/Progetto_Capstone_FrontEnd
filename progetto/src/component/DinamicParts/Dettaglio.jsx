@@ -57,6 +57,7 @@ function Dettaglio() {
           <Button
             onClick={() => {
               dispatch(addCart(prodotto));
+              alert("Aggiunto al carrello");
             }}
           >
             Aggiungi al carrello

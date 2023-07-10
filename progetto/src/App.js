@@ -10,6 +10,7 @@ import Dettaglio from './component/DinamicParts/Dettaglio';
 import NotFound from './component/DinamicParts/NotFound';
 import Profilo from './component/DinamicParts/Profilo';
 import Catalogo from './component/DinamicParts/Catalogo';
+import Carrello from './component/DinamicParts/Carrello';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path='/profile' element={<Profilo />} />
           <Route path='/register' element={<Register />} />
           <Route path='/catalogo/articolo/id/:id' element={<Dettaglio />} />
+          <Route path='/carrello' element={<Carrello />} />
         </Routes>
         <Footer />
       </BrowserRouter>

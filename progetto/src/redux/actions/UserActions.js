@@ -3,6 +3,7 @@ export const SET_TOKEN = "SET_TOKEN";
 
 export const setUser = (profile) => {
     const url = "http://localhost:8080/user/" + profile.username;
+    console.log(url);
     return (dispatch) => {
         try {
             fetch(url, {
