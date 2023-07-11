@@ -18,16 +18,18 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { REMOVE_CART } from "../../redux/actions/CartAction";
+import { EMPTY_CART, REMOVE_CART } from "../../redux/actions/CartAction";
 import { FaTrash } from "react-icons/fa";
+import { logOut, setToken, setUser } from "../../redux/actions/UserActions";
 
 function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.user.user);
-  console.log(user);
-  const cart = useSelector((state) => state.cart.cart.items);
+  console.log(user.name);
+  const cart = useSelector((state) => state.cart.cart);
+  console.log(cart);
 
   //Offcanvas per carrello
   const [show, setShow] = useState(false);
@@ -36,9 +38,48 @@ function NavBar() {
 
   //Search bar
   const [query, setQuery] = useState("");
-  console.log(query);
   const handleChange = (e) => {
     setQuery(e.target.value);
+  };
+
+  //login
+  //impostazioni per loggarsi
+  const [usernameLogin, setUsernameLogin] = useState("");
+  const [passwordLogin, setPasswordLogin] = useState("");
+
+  const handleLogin = (e) => {
+    console.log("entrato");
+    e.preventDefault();
+    const url = "http://localhost:8080/api/auth/login";
+
+    var dataObj = {
+      username: String,
+      accessToken: String,
+      tokenType: String,
+    };
+
+    const postDataLogin = {
+      username: usernameLogin,
+      password: passwordLogin,
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postDataLogin),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dataObj = data;
+        console.log(data);
+        dispatch(setToken(dataObj));
+        dispatch(setUser(dataObj));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   return (
@@ -124,42 +165,82 @@ function NavBar() {
           </Col>
 
           <Col xs={3} className="d-flex justify-content-end align-items-center">
-            <Nav.Link href="#action1">
-              <Dropdown>
+            <Nav.Link>
+              <Dropdown drop="start">
                 <Dropdown.Toggle variant="transparent" id="dropdown-basic">
                   <MdAccountCircle size="30px" />
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
-                  <Dropdown.Item>
-                    <Row>
-                      <Col>
-                        <h4>
-                          {user.name} {user.lastname}
-                        </h4>
-                      </Col>
-                    </Row>
-                    <Button
-                      onClick={() => {
-                        navigate("/profile");
-                      }}
-                      className="w-100 my-2"
-                    >
-                      Visualizza profilo
-                    </Button>
-                  </Dropdown.Item>
-                  <Dropdown.Divider />
-                  <div className="mx-3">
-                    <h5>Account</h5>
-                  </div>
-                  <Dropdown.Item>Prova Premium gratis</Dropdown.Item>
-                  <Button>Esci</Button>
+                  {user.name == undefined ? (
+                    <Container>
+                      <Form onSubmit={handleLogin}>
+                        <Form.Group className="mb-3" controlId="formGroupEmail">
+                          <Form.Label>Username</Form.Label>
+                          <Form.Control
+                            type="text"
+                            placeholder="Username"
+                            value={usernameLogin}
+                            onChange={(e) => setUsernameLogin(e.target.value)}
+                          />
+                        </Form.Group>
+                        <Form.Group
+                          className="mb-3"
+                          controlId="formGroupPassword"
+                          value={passwordLogin}
+                          onChange={(e) => setPasswordLogin(e.target.value)}
+                        >
+                          <Form.Label>Password</Form.Label>
+                          <Form.Control
+                            type="password"
+                            placeholder="Password"
+                          />
+                        </Form.Group>
+                        <Button variant="primary" type="submit">
+                          Accedi
+                        </Button>
+                        <Dropdown.Divider />
+
+                        <Link to={"/register"}>Crea il tuo account</Link>
+                      </Form>
+                    </Container>
+                  ) : (
+                    <>
+                      <Dropdown.Item>
+                        <Row>
+                          <Col>
+                            <h4>
+                              {user.name} {user.lastname}
+                            </h4>
+                          </Col>
+                        </Row>
+                        <Button
+                          onClick={() => {
+                            navigate("/profile");
+                          }}
+                          className="w-100 my-2"
+                        >
+                          Visualizza profilo
+                        </Button>
+                        <Dropdown.Divider />
+                        <Button
+                          onClick={() => {
+                            dispatch(logOut());
+                            navigate("/home");
+                          }}
+                        >
+                          Esci
+                        </Button>
+                      </Dropdown.Item>
+                    </>
+                  )}
                 </Dropdown.Menu>
               </Dropdown>
             </Nav.Link>
 
             <Nav.Link href="#action1">
-              <AiOutlineHeart size="30px" className="mx-2" />
+              <Link to={"/preferiti"}>
+                <AiOutlineHeart size="30px" className="mx-2" />
+              </Link>
             </Nav.Link>
             <Nav.Link>
               <AiOutlineShoppingCart
@@ -173,51 +254,49 @@ function NavBar() {
                   <Offcanvas.Title>Carrello</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  {cart[0] == null ? (
+                  {cart.items == undefined || cart.items.length == 0 ? (
                     <Card.Body>
                       <Card.Title>
                         Non ci sono prodotti nel tuo carrello
                       </Card.Title>
-                      <Card.Text className="m-0"></Card.Text>
-                      <Card.Text className="m-0"></Card.Text>
                     </Card.Body>
                   ) : (
-                    cart.map((cart, i) => (
-                      <Card.Body key={i}>
-                        <Row>
-                          <Col xs={3}>
-                            <img
-                              src={cart.foto}
-                              style={{ height: "100px" }}
-                              alt=""
-                            />
-                          </Col>
-                          <Col>
-                            {cart.nome}
-                            <br />
-                            <br />
-                            {cart.prezzo}€ - Quantità = 1
-                            <Button
-                              variant="danger"
-                              onClick={() => {
-                                dispatch({
-                                  type: REMOVE_CART,
-                                  payload: i,
-                                });
-                              }}
-                            >
-                              <FaTrash />
-                            </Button>
-                          </Col>
-                        </Row>
-                      </Card.Body>
-                    ))
-                  )}
-                  {cart[0] == null ? null : (
                     <>
-                      <Col sm={12} className="font-weight-bold mb-3 ml-4">
+                      {cart.items.map((cart, i) => (
+                        <Card.Body key={i}>
+                          <Row>
+                            <Col xs={3}>
+                              <img
+                                src={cart.foto}
+                                style={{ height: "100px" }}
+                                alt=""
+                              />
+                            </Col>
+                            <Col>
+                              <div>{cart.nome}</div>
+                              {cart.prezzo}€
+                              <Button
+                                variant="danger"
+                                className="text-end"
+                                onClick={() => {
+                                  dispatch({
+                                    type: REMOVE_CART,
+                                    payload: i,
+                                  });
+                                }}
+                              >
+                                <FaTrash />
+                              </Button>
+                            </Col>
+                          </Row>
+                        </Card.Body>
+                      ))}
+                      <Col
+                        sm={12}
+                        className="font-weight-bold mb-3 ml-4 text-end"
+                      >
                         <p className="d-inline">TOTALE: </p>
-                        {cart.reduce(
+                        {cart.items.reduce(
                           (acc, currentValue) =>
                             acc + parseFloat(currentValue.prezzo),
                           0
@@ -227,11 +306,8 @@ function NavBar() {
                       <Button
                         variant="danger"
                         onClick={() => {
-                          cart.map((item, i) => {
-                            dispatch({
-                              type: REMOVE_CART,
-                              payload: i,
-                            });
+                          dispatch({
+                            type: EMPTY_CART,
                           });
                         }}
                       >

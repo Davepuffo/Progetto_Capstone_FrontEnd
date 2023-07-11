@@ -20,10 +20,14 @@ function Profilo() {
             <div>Non ci sono indirizzi inseriti per questo profilo</div>
           ) : (
             user.indirizziUtente.map((indirizzo) => (
-              <p>
-                Via {indirizzo.via} {indirizzo.civico}, {indirizzo.citta} (
-                {indirizzo.provincia}) - indirizzo di {indirizzo.tipo}{" "}
-              </p>
+              <>
+                <p>Indirizzo di {indirizzo.tipo}:</p>
+                <p>
+                  Via {indirizzo.via} {indirizzo.civico}, {indirizzo.citta} (
+                  {indirizzo.provincia}){" "}
+                </p>
+                <hr />
+              </>
             ))
           )}
         </Col>

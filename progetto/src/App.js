@@ -11,6 +11,7 @@ import NotFound from './component/DinamicParts/NotFound';
 import Profilo from './component/DinamicParts/Profilo';
 import Catalogo from './component/DinamicParts/Catalogo';
 import Carrello from './component/DinamicParts/Carrello';
+import Preferiti from './component/DinamicParts/Preferiti';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/catalogo/articolo/id/:id' element={<Dettaglio />} />
           <Route path='/carrello' element={<Carrello />} />
+          <Route path='/preferiti' element={<Preferiti />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -16,7 +16,6 @@ function Dettaglio() {
   const [prodotto, setProdotto] = useState([]);
   const dispatch = useDispatch();
   const param = useParams();
-  console.log(param);
 
   const getProdotto = () => {
     try {
@@ -49,6 +48,7 @@ function Dettaglio() {
             className="my-2"
             onClick={() => {
               dispatch(addFavourite(prodotto));
+              alert("Aggiunto ai preferiti");
             }}
           >
             Aggiungi alla lista dei preferiti

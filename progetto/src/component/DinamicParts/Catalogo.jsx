@@ -3,13 +3,18 @@ import { Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { useNavigate, useParams } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { addFavourite } from "../../redux/actions/FavouriteAction";
+import { addCart } from "../../redux/actions/CartAction";
 
 function Catalogo() {
   const url = "http://localhost:8080/catalogo/articolo/";
   const [prodotto, setProdotto] = useState([]);
   const navigate = useNavigate();
   const params = useParams();
+  const dispatch = useDispatch();
 
   const getProdotto = () => {
     try {
@@ -30,25 +35,34 @@ function Catalogo() {
       <h2 className="my-5">Risultati per:</h2>
       <Row>
         {prodotto.map((item) => (
-          <Col key={item.id} xs={12} md={6} lg={4}>
-            <Card style={{ width: "18rem" }} className="my-4 mx-2">
-              <Card.Img
-                variant="top"
-                src={item.foto}
-                onClick={() => {
-                  navigate("/catalogo/articolo/id/" + item.id);
-                }}
-              />
+          <Col key={item.id} xs={6} md={4} lg={3}>
+            <Card className="my-4 mx-2">
+              <Link to={"/catalogo/articolo/id/" + item.id}>
+                <Card.Img variant="top" src={item.foto} />
+              </Link>
               <Card.Body>
                 <Card.Title>{item.nome}</Card.Title>
-                <Card.Text>{item.descrizione}</Card.Text>
+                <Card.Text>
+                  {item.prezzo} €
+                  <Button
+                    className="p-0"
+                    variant="transparent"
+                    onClick={() => {
+                      dispatch(addFavourite(item));
+                      alert("Aggiunto ai preferiti");
+                    }}
+                  >
+                    <AiOutlineHeart size="30px" className="mx-2" />
+                  </Button>
+                </Card.Text>
                 <Button
                   onClick={() => {
-                    navigate("/catalogo/articolo/id/" + item.id);
+                    dispatch(addCart(item));
+                    alert("Aggiunto al carrello");
                   }}
                   variant="primary"
                 >
-                  Go somewhere
+                  Aggiungi al carrello
                 </Button>
               </Card.Body>
             </Card>

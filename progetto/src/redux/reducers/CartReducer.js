@@ -1,4 +1,4 @@
-import { ADD_CART, REMOVE_CART } from "../actions/CartAction";
+import { ADD_CART, EMPTY_CART, REMOVE_CART } from "../actions/CartAction";
 
 const cartState = {
     cart: {
@@ -9,20 +9,37 @@ const cartState = {
 const CartReducer = (state = cartState, action) => {
     switch (action.type) {
         case ADD_CART:
-            return {
-                cart: {
-                    items: [...state.cart.items, action.payload]
-                },
-
+            if (state.cart.items == undefined) {
+                return {
+                    ...state,
+                    cart: {
+                        items: [action.payload]
+                    },
+                }
+            } else {
+                return {
+                    ...state,
+                    cart: {
+                        items: [...state.cart.items, action.payload]
+                    },
+                }
             }
         case REMOVE_CART:
             return {
+                ...state,
                 cart: {
                     items: [
                         ...state.cart.items.slice(0, action.payload),
                         ...state.cart.items.slice(action.payload + 1),
                     ],
                 },
+            }
+
+        case EMPTY_CART:
+            return {
+                cart: {
+                    items: action.payload
+                }
             }
 
         default:
