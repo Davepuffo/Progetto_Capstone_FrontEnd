@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Card from "react-bootstrap/Card";
+import Badge from "react-bootstrap/Badge";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
@@ -27,9 +28,7 @@ function NavBar() {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.user.user);
-  console.log(user.name);
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
 
   //Offcanvas per carrello
   const [show, setShow] = useState(false);
@@ -48,7 +47,6 @@ function NavBar() {
   const [passwordLogin, setPasswordLogin] = useState("");
 
   const handleLogin = (e) => {
-    console.log("entrato");
     e.preventDefault();
     const url = "http://localhost:8080/api/auth/login";
 
@@ -83,7 +81,7 @@ function NavBar() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary p-0">
+    <Navbar expand="lg" className="bg-body-tertiary p-0" sticky="top">
       <Container fluid className="flex-column p-0">
         <Row className="bg-dark w-100 text-white">
           <Col>
@@ -92,7 +90,7 @@ function NavBar() {
         </Row>
         <Row className="w-100 align-items-center py-2 my-4">
           <Col xs={1}>
-            <Navbar.Toggle aria-controls="navbarScroll" />
+            <Navbar.Toggle aria-controls="navbarScroll" onClick={show} />
           </Col>
           <Col xs={5} md={3}>
             <Link to={"/home"}>Logo</Link>
@@ -198,10 +196,9 @@ function NavBar() {
                         <Button variant="primary" type="submit">
                           Accedi
                         </Button>
-                        <Dropdown.Divider />
-
-                        <Link to={"/register"}>Crea il tuo account</Link>
                       </Form>
+                      <Dropdown.Divider />
+                      <Link to={"/register"}>Crea il tuo account</Link>
                     </Container>
                   ) : (
                     <>
@@ -248,6 +245,7 @@ function NavBar() {
                 onClick={handleShow}
                 className="mx-2"
               />
+              <Badge bg="secondary"></Badge>
 
               <Offcanvas show={show} onHide={handleClose} placement="end">
                 <Offcanvas.Header closeButton>
@@ -303,6 +301,31 @@ function NavBar() {
                         )}
                         €
                       </Col>
+                      {user.name == undefined ? (
+                        <Button>
+                          <Link
+                            to={"/register"}
+                            onClick={() => {
+                              setShow(false);
+                            }}
+                            className="text-white"
+                          >
+                            Accedi o registrati per procedere con l'ordine
+                          </Link>
+                        </Button>
+                      ) : (
+                        <Button>
+                          <Link
+                            to={"/carrello"}
+                            onClick={() => {
+                              setShow(false);
+                            }}
+                            className="text-white"
+                          >
+                            Procedi con l'acquisto
+                          </Link>
+                        </Button>
+                      )}
                       <Button
                         variant="danger"
                         onClick={() => {
@@ -312,17 +335,6 @@ function NavBar() {
                         }}
                       >
                         Svuota carrello
-                      </Button>
-                      <Button>
-                        <Link
-                          to={"/carrello"}
-                          onClick={() => {
-                            setShow(false);
-                          }}
-                          className="text-white"
-                        >
-                          Procedi con l'acquisto
-                        </Link>
                       </Button>
                     </>
                   )}
