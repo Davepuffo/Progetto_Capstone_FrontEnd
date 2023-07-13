@@ -10,17 +10,9 @@ import {
 
 function Footer() {
   return (
-    <Container fluid className="bg-dark text-white text-center">
-      <Row className="flex-column py-3">
-        <Col>
-          <p>Logo</p>
-        </Col>
-        <Col>
-          <p>Numero 1 per vendite a domicilio</p>
-        </Col>
-      </Row>
-
-      <Row className="my-3">
+    <Container fluid className="text-center">
+      <Row className="flex-column py-3 bg-success align-items-center">Logo</Row>
+      <Row className="my-3 colFooter">
         <Col>
           <ul className="list-unstyled">
             <h4>Negozi</h4>
@@ -76,7 +68,7 @@ function Footer() {
         </Col>
       </Row>
 
-      <Row fluid className="bg-secondary py-1">
+      <Row fluid className="bg-secondary text-white py-1">
         <Col>
           <p>
             AGRIFARMA S.P.A a socio unico Via Roncaglia, 12, 20146-Milano (MI)

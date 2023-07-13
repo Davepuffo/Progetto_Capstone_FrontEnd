@@ -1,12 +1,35 @@
 .listaFooter a {
   text-decoration: none;
-  color: antiquewhite;
+  color: black;
 }
 
 .listaFooter a :hover {
-  text-decoration: aquamarine;
+  text-decoration: underline;
 }
 
 .indispensabili {
   width: 150px;
+}
+
+.efficenza {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
+
+.stilizzati {
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-align: center;
+}
+
+#dropdownmenu {
+  background-color: #58ab28;
+}
+
+.colFooter h4 {
+  color: #3f8755;
 }

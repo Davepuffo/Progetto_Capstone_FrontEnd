@@ -26,7 +26,7 @@ function HomePage() {
         <Carousel.Item className="h-100 text-center" interval={2000}>
           <img
             className="d"
-            src="http://placekitten.com/800/350"
+            src="http://placekitten.com/1200/350"
             alt="First slide"
           />
           <Carousel.Caption>
@@ -35,63 +35,83 @@ function HomePage() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
-      <Row className="w-100 py-3 my-2 mx-0 align-items-center border border-dark">
-        <Col className="d-flex align-items-center justify-content-center">
-          <LiaShippingFastSolid className="mx-2" />
+      <Row className="w-100 py-3 my-2 mx-0 align-items-center border border-grey">
+        <Col xs={6} md={3} className="efficenza">
+          <LiaShippingFastSolid className="mx-2" size="30px" />
           <p className="my-0">Consegna veloce</p>
         </Col>
-        <Col className="d-flex align-items-center justify-content-center">
-          <AiOutlineMessage className="mx-2" />
+        <Col xs={6} md={3} className="efficenza">
+          <AiOutlineMessage className="mx-2" size="30px" />
           <p className="my-0">Assistenza clienti</p>
         </Col>
-        <Col className="d-flex align-items-center justify-content-center">
-          <PiArrowCounterClockwiseBold className="mx-2" />
+        <Col xs={6} md={3} className="efficenza">
+          <PiArrowCounterClockwiseBold className="mx-2" size="30px" />
           <p className="my-0">Reso facile</p>
         </Col>
-        <Col className="d-flex align-items-center justify-content-center">
-          <GrCreditCard className="mx-2" />
+        <Col xs={6} md={3} className="efficenza">
+          <GrCreditCard className="mx-2" size="30px" />
           <p className="my-0">Pagamenti sicuri</p>
         </Col>
       </Row>
 
-      <Row className="my-4">
-        <Col>
+      <Row className=" mx-3">
+        <h3>Acquista un prodotto per:</h3>
+        <Col className="stilizzati">
           <img
-            src="https://www.greenme.it/wp-content/uploads/2014/02/cani_benefici.jpg"
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dwfc3fa028/cane.png"
             alt=""
-            style={{ height: "150px" }}
           />
           <p>Cane</p>
         </Col>
-        <Col>
+        <Col className="stilizzati">
           <img
-            src="https://riccardogazzaniga.com/wp-content/uploads/2022/01/Gatto_europeo3-627x559.jpg"
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw4519b017/gatto.png"
             alt=""
-            style={{ height: "150px" }}
           />
           <p>Gatto</p>
         </Col>
-        <Col>
+        <Col className="stilizzati">
           <img
-            src="https://www.galileonet.it/wp-content/uploads/2021/04/pesci.jpg"
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dweb9469fd/acquariologia.png"
             alt=""
-            style={{ height: "150px" }}
           />
           <p>Pesci</p>
         </Col>
+        <Col className="stilizzati">
+          <img
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dwc5161b3c/uccelli.png"
+            alt=""
+          />
+          <p>Uccelli</p>
+        </Col>
+        <Col className="stilizzati">
+          <img
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw6f289a6f/roditori.png"
+            alt=""
+          />
+          <p>Roditori</p>
+        </Col>
+        <Col className="stilizzati">
+          <img
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw4a4407fc/idt_promozioni.png"
+            alt=""
+          />
+          <p>Promozioni</p>
+        </Col>
       </Row>
 
-      <Row className="my-3 bg-success py-4 align-items-center">
-        <Col xs={12} md={6}>
-          <h4>
-            Iscriviti alla nostra newletter per rimanere aggiornato su sconti e
-            offerte
-          </h4>
+      <Row className="my-3 bg-success p-4 align-items-center flex-column text-center">
+        <Col xs={12} md={6} className="text-white">
+          <h4>Iscriviti alla nostra newsletter:</h4>
+          <p>
+            Iscriviti alla newsletter dell’Isola dei Tesori e resta sempre
+            aggiornato sulle ultime novità!
+          </p>
         </Col>
         <Col xs={12} md={6}>
-          <Form>
-            <Form.Control type="mail" />
-            <Button className="mt-2">Invia!</Button>
+          <Form className="d-flex align-items-center">
+            <Form.Control type="mail" className="h-50" />
+            <Button className="mx-2">Invia!</Button>
           </Form>
         </Col>
       </Row>

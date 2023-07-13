@@ -81,92 +81,27 @@ function NavBar() {
   };
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary p-0" sticky="top">
+    <Navbar expand="lg" className="bg-success p-0 " sticky="top">
       <Container fluid className="flex-column p-0">
-        <Row className="bg-dark w-100 text-white">
-          <Col>
-            <p className="my-0 text-center">Spedizione Gratuita sopra i 50€</p>
-          </Col>
-        </Row>
-        <Row className="w-100 align-items-center py-2 my-4">
-          <Col xs={1}>
-            <Navbar.Toggle aria-controls="navbarScroll" onClick={show} />
-          </Col>
-          <Col xs={5} md={3}>
-            <Link to={"/home"}>Logo</Link>
-          </Col>
-          <Col>
-            <Navbar.Collapse id="navbarScroll">
-              <Nav
-                className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: "300px" }}
-                navbarScroll
-              >
-                <NavDropdown title="Cane" id="navbarScrollingDropdown">
-                  <NavDropdown.Item
-                    onClick={() => {
-                      navigate("/catalogo/cane");
-                    }}
-                  >
-                    Tutti i prodotti per il tuo cane
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Gatto" id="navbarScrollingDropdown">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-                <NavDropdown title="Pesci" id="navbarScrollingDropdown">
-                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action4">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action5">
-                    Something else here
-                  </NavDropdown.Item>
-                </NavDropdown>
-              </Nav>
-            </Navbar.Collapse>
-          </Col>
-
-          <Col xs={2}>
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
-                onChange={handleChange}
-              />
-              <Button
-                onClick={() => {
-                  navigate("/catalogo/cerca/" + query);
-                }}
-                variant="outline-transparent"
-              >
-                <AiOutlineSearch size="30px" />
-              </Button>
-            </Form>
-          </Col>
-
-          <Col xs={3} className="d-flex justify-content-end align-items-center">
+        <Row className="w-100 align-items-center py-2 mt-2 justify-content-between">
+          <Col
+            xs={3}
+            className="d-flex justify-content-end align-items-center p-0"
+          >
+            <Navbar.Toggle
+              aria-controls="navbarScroll"
+              size="30px"
+              className="p-0 m-0 "
+            />
             <Nav.Link>
-              <Dropdown drop="start">
+              <Dropdown drop="down">
                 <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                  <MdAccountCircle size="30px" />
+                  {user.name == undefined ? null : (
+                    <p className="d-none d-lg-inline text-white">
+                      Ciao {user.username}
+                    </p>
+                  )}
+                  <MdAccountCircle size="30px" color="white" />
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {user.name == undefined ? (
@@ -233,19 +168,33 @@ function NavBar() {
                 </Dropdown.Menu>
               </Dropdown>
             </Nav.Link>
+          </Col>
+          <Col xs={6} md={3} className="text-center">
+            <Link to={"/home"}>Logo</Link>
+          </Col>
 
+          <Col
+            xs={3}
+            className="d-flex justify-content-start align-items-center p-0"
+          >
             <Nav.Link href="#action1">
               <Link to={"/preferiti"}>
-                <AiOutlineHeart size="30px" className="mx-2" />
+                <AiOutlineHeart size="30px" className="mx-2" color="white" />
               </Link>
             </Nav.Link>
+
             <Nav.Link>
               <AiOutlineShoppingCart
                 size="30px"
+                color="white"
                 onClick={handleShow}
                 className="mx-2"
               />
-              <Badge bg="secondary"></Badge>
+              <Badge bg="secondary">
+                {cart.items == undefined || cart.items.length == 0
+                  ? 0
+                  : cart.items.length}
+              </Badge>
 
               <Offcanvas show={show} onHide={handleClose} placement="end">
                 <Offcanvas.Header closeButton>
@@ -341,6 +290,83 @@ function NavBar() {
                 </Offcanvas.Body>
               </Offcanvas>
             </Nav.Link>
+          </Col>
+        </Row>
+
+        <Row className="w-100 justify-content-center">
+          <Col md={6} className="w-75">
+            <Form className="d-flex my-2">
+              <Form.Control
+                type="search"
+                placeholder="Cerca qui!"
+                className="me-2"
+                aria-label="Search"
+                onChange={handleChange}
+              />
+              <Button
+                onClick={() => {
+                  navigate("/catalogo/cerca/" + query);
+                }}
+                variant="outline-transparent"
+              >
+                <AiOutlineSearch size="30px" color="white" />
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+
+        <Row id="dropdownmenu" className="w-100">
+          <Col>
+            <Navbar.Collapse id="navbarScroll">
+              <Row className="align-items-center justify-content-center">
+                <Col className="p-0">
+                  <Dropdown>
+                    <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                      Cane{" "}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        onClick={() => {
+                          navigate("/catalogo/cane");
+                        }}
+                      >
+                        Tutti i prodotti per il tuo cane
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">
+                        Another action
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Something else
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Col>
+                <Col>
+                  <Dropdown>
+                    <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                      Gatto{" "}
+                    </Dropdown.Toggle>
+
+                    <Dropdown.Menu>
+                      <Dropdown.Item
+                        onClick={() => {
+                          navigate("/catalogo/cane");
+                        }}
+                      >
+                        Tutti i prodotti per il tuo cane
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-2">
+                        Another action
+                      </Dropdown.Item>
+                      <Dropdown.Item href="#/action-3">
+                        Something else
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </Col>
+              </Row>
+            </Navbar.Collapse>
           </Col>
         </Row>
       </Container>
