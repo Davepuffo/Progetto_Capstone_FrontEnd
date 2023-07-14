@@ -313,59 +313,127 @@ function NavBar() {
           </Col>
         </Row>
 
-        <Row id="dropdownmenu" className="w-100">
-          <Col>
-            <Navbar.Collapse id="navbarScroll">
-              <Row className="align-items-center justify-content-center">
-                <Col className="p-0">
-                  <Dropdown>
-                    <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
-                      Cane{" "}
-                    </Dropdown.Toggle>
+        <Row
+          className="w-100 align-items-center justify-content-center text-center"
+          id="dropdownmenu"
+        >
+          <Navbar.Collapse id="navbarScroll">
+            <Col className="p-0">
+              <Dropdown>
+                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                  Cane{" "}
+                </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item
-                        onClick={() => {
-                          navigate("/catalogo/cane");
-                        }}
-                      >
-                        Tutti i prodotti per il tuo cane
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Col>
-                <Col>
-                  <Dropdown>
-                    <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
-                      Gatto{" "}
-                    </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/catalogo/cane");
+                    }}
+                  >
+                    Tutti i prodotti per il tuo cane
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown>
+                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                  Gatto{" "}
+                </Dropdown.Toggle>
 
-                    <Dropdown.Menu>
-                      <Dropdown.Item
-                        onClick={() => {
-                          navigate("/catalogo/cane");
-                        }}
-                      >
-                        Tutti i prodotti per il tuo cane
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-2">
-                        Another action
-                      </Dropdown.Item>
-                      <Dropdown.Item href="#/action-3">
-                        Something else
-                      </Dropdown.Item>
-                    </Dropdown.Menu>
-                  </Dropdown>
-                </Col>
-              </Row>
-            </Navbar.Collapse>
-          </Col>
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/catalogo/cane");
+                    }}
+                  >
+                    Tutti i prodotti per il tuo cane
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown>
+                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                  Pesci{" "}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/catalogo/cane");
+                    }}
+                  >
+                    Tutti i prodotti per il tuo cane
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown>
+                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                  Uccelli{" "}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/catalogo/cane");
+                    }}
+                  >
+                    Tutti i prodotti per il tuo cane
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+            <Col>
+              <Dropdown>
+                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                  Roditori{" "}
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item
+                    onClick={() => {
+                      navigate("/catalogo/cane");
+                    }}
+                  >
+                    Tutti i prodotti per il tuo cane
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            </Col>
+          </Navbar.Collapse>
         </Row>
       </Container>
     </Navbar>

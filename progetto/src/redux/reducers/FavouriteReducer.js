@@ -9,11 +9,19 @@ const favState = {
 const FavouriteReducer = (state = favState, action) => {
     switch (action.type) {
         case ADD_FAVOURITE:
-            return {
-                ...state,
-                favourite: {
-                    content: [...state.favourite.content, action.payload],
-                },
+            if (state.favourite.content == undefined) {
+                return {
+                    ...state,
+                    favourite: {
+                        content: [action.payload]
+                    },
+                }
+            } else {
+                return {
+                    favourite: {
+                        content: [...state.favourite.content, action.payload],
+                    }
+                }
             }
 
         case REMOVE_FAVOURITE:

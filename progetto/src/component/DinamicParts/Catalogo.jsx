@@ -32,11 +32,11 @@ function Catalogo() {
 
   return (
     <Container>
-      <h3>Risultati per:</h3>
+      <h3>Risultati per: {params.animale}</h3>
       <Row>
         {prodotto.map((item) => (
           <Col key={item.id} xs={6} md={4} lg={3}>
-            <Card className=" mx-2">
+            <Card className=" m-2">
               <Link to={"/catalogo/articolo/id/" + item.id}>
                 <Card.Img variant="top" src={item.foto} />
               </Link>

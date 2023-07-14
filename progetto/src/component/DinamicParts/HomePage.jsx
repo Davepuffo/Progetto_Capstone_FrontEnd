@@ -23,9 +23,9 @@ function HomePage() {
         onSelect={handleSelect}
         style={{ maxHeight: "400px" }}
       >
-        <Carousel.Item className="text-center h-100" interval={2000}>
+        <Carousel.Item className="text-center h-100" interval={4000}>
           <img
-            className=""
+            className="img-fluid"
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw317c4c1f/Carosello%20home/Summerdays_homepage_1920x693.jpg"
             alt="First slide"
             style={{ maxHeight: "400px" }}
@@ -51,7 +51,7 @@ function HomePage() {
         </Col>
       </Row>
 
-      <Row className=" mx-3">
+      <Row className="mx-3">
         <h3>Acquista un prodotto per:</h3>
         <Col className="stilizzati">
           <img
@@ -113,8 +113,8 @@ function HomePage() {
         </Col>
       </Row>
 
-      <h3 className="text-start p-3 ms-4">Indispensabili per il cane</h3>
-      <Row>
+      <Row className="m-3 text-center">
+        <h3 className="text-start">Indispensabili per il cane</h3>
         <Col>
           <img
             src="https://arcaplanet.vtexassets.com/assets/vtex.file-manager-graphql/images/82739662-f0a1-4add-b5c9-5390c88f075d___f4b8cc27fd663fc642db8b4ca8f8120c.jpg"
@@ -163,9 +163,7 @@ function HomePage() {
           />
           <p>Igiene</p>
         </Col>
-      </Row>
-      <h3 className="text-start p-3 ms-4">Indispensabili per il gatto</h3>
-      <Row>
+        <h3 className="text-start">Indispensabili per il gatto</h3>
         <Col>
           <img
             src="https://arcaplanet.vtexassets.com/assets/vtex.file-manager-graphql/images/da5257f9-ed07-42e9-9eaf-d65d0a3278a1___cc7a92d631f91ae1ae0664af87edbdaa.jpg"
