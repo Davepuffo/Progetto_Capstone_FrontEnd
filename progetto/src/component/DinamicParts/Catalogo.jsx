@@ -32,29 +32,31 @@ function Catalogo() {
 
   return (
     <Container>
-      <h2 className="my-5">Risultati per:</h2>
+      <h3>Risultati per:</h3>
       <Row>
         {prodotto.map((item) => (
           <Col key={item.id} xs={6} md={4} lg={3}>
-            <Card className="my-4 mx-2">
+            <Card className=" mx-2">
               <Link to={"/catalogo/articolo/id/" + item.id}>
                 <Card.Img variant="top" src={item.foto} />
               </Link>
               <Card.Body>
                 <Card.Title>{item.nome}</Card.Title>
-                <Card.Text>
-                  {item.prezzo} €
-                  <Button
-                    className="p-0"
-                    variant="transparent"
-                    onClick={() => {
-                      dispatch(addFavourite(item));
-                      alert("Aggiunto ai preferiti");
-                    }}
-                  >
-                    <AiOutlineHeart size="30px" className="mx-2" />
-                  </Button>
-                </Card.Text>
+                <div className="d-flex justify-content-between my-2">
+                  <Card.Text>
+                    {item.prezzo} €
+                    <Button
+                      className="p-0"
+                      variant="transparent"
+                      onClick={() => {
+                        dispatch(addFavourite(item));
+                        alert("Aggiunto ai preferiti");
+                      }}
+                    >
+                      <AiOutlineHeart size="30px" className="mx-2" />
+                    </Button>
+                  </Card.Text>
+                </div>
                 <Button
                   onClick={() => {
                     dispatch(addCart(item));

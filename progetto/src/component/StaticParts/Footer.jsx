@@ -8,6 +8,8 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 
+import { BsFillArrowUpCircleFill } from "react-icons/bs";
+
 function Footer() {
   return (
     <Container fluid className="text-center">
@@ -49,33 +51,39 @@ function Footer() {
         </Col>
         <Col>
           <h4 className="mb-4">Seguici su:</h4>
-          <a href="#">
+          <a href="#" className="social">
             {" "}
             <FaInstagram size="30px" className="mx-2" />
           </a>
-          <a href="#">
+          <a href="#" className="social">
             {" "}
             <FaLinkedin size="30px" className="mx-2" />
           </a>
-          <a href="#">
+          <a href="#" className="social">
             {" "}
             <FaTwitter size="30px" className="mx-2" />
           </a>
-          <a href="#">
+          <a href="#" className="social">
             {" "}
             <FaFacebookSquare size="30px" className="mx-2" />
           </a>
         </Col>
       </Row>
 
-      <Row fluid className="bg-secondary text-white py-1">
+      <Row fluid className="py-1 text-center">
+        <hr />
         <Col>
           <p>
             AGRIFARMA S.P.A a socio unico Via Roncaglia, 12, 20146-Milano (MI)
             P.IVA 01067670990 C.F 01421010487 Capitale Sociale Euro 1.121.363,00
-            I.V Iscritta al registro imprese di MILANO MONZA BRIANZA E LODI PEC:
-            info@pec.arcaplanet.net
+            I.V Iscritta al registro imprese di MILANO MONZA BRIANZA E LODI
           </p>
+        </Col>
+        <hr />
+        <Col className="pb-3">
+          <a href="#">
+            <BsFillArrowUpCircleFill color="green" size="30px" />
+          </a>
         </Col>
       </Row>
     </Container>

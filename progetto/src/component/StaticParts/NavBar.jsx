@@ -190,11 +190,9 @@ function NavBar() {
                 onClick={handleShow}
                 className="mx-2"
               />
-              <Badge bg="secondary">
-                {cart.items == undefined || cart.items.length == 0
-                  ? 0
-                  : cart.items.length}
-              </Badge>
+              {cart.items == undefined || cart.items.length == 0 ? null : (
+                <Badge bg="danger">{cart.items.length}</Badge>
+              )}
 
               <Offcanvas show={show} onHide={handleClose} placement="end">
                 <Offcanvas.Header closeButton>

@@ -21,18 +21,15 @@ function HomePage() {
       <Carousel
         activeIndex={index}
         onSelect={handleSelect}
-        style={{ height: "350px" }}
+        style={{ maxHeight: "400px" }}
       >
-        <Carousel.Item className="h-100 text-center" interval={2000}>
+        <Carousel.Item className="text-center h-100" interval={2000}>
           <img
-            className="d"
-            src="http://placekitten.com/1200/350"
+            className=""
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw317c4c1f/Carosello%20home/Summerdays_homepage_1920x693.jpg"
             alt="First slide"
+            style={{ maxHeight: "400px" }}
           />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
       <Row className="w-100 py-3 my-2 mx-0 align-items-center border border-grey">
@@ -111,7 +108,7 @@ function HomePage() {
         <Col xs={12} md={6}>
           <Form className="d-flex align-items-center">
             <Form.Control type="mail" className="h-50" />
-            <Button className="mx-2">Invia!</Button>
+            <Button className="mx-2 btn-">Invia!</Button>
           </Form>
         </Col>
       </Row>

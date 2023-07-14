@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { REMOVE_FAVOURITE } from "../../redux/actions/FavouriteAction";
@@ -12,21 +12,26 @@ function Preferiti() {
   return (
     <Container>
       {favourite == null ? (
-        <Row>
+        <Card className="m-3 my-5 p-3 text-center border border-0">
           <h4>Non hai inserito nessun prodotto nei tuoi preferiti</h4>
           <br />
           <Link to={"/catalogo/prodotti"}>
-            <h4>Inizia subito</h4>
+            <Button className="px-4">
+              <h4>Inizia subito</h4>
+            </Button>
           </Link>
+          <p className="m-0 my-2">oppure</p>
           <Link to={"/home"}>
-            <h4>Torna alla Home</h4>
+            <Button className="px-4">
+              <h4>Torna alla Home</h4>
+            </Button>
           </Link>
-        </Row>
+        </Card>
       ) : (
         <>
-          <h3>Riepilogo:</h3>
+          <h3>Prodotti preferiti :</h3>
           {favourite.map((item, i) => (
-            <Row key={item.id}>
+            <Row key={item.id} className="my-2">
               <Col xs={2}>
                 <img src={item.foto} style={{ height: "100px" }} alt="" />
               </Col>
@@ -62,6 +67,7 @@ function Preferiti() {
                   <FaTrash />
                 </Button>
               </Col>
+              <hr />
             </Row>
           ))}
         </>

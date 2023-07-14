@@ -92,17 +92,46 @@ function Register() {
 
   return (
     <Container className="d-flex justify-content-center">
-      <Card className="w-50 my-5">
+      <Card className="w-100 my-5" style={{ maxWidth: "500px" }}>
         <Tabs
           defaultActiveKey="profile"
           id="uncontrolled-tab-example"
-          className="m-3 w-100"
+          className="m-3"
         >
-          <Tab eventKey="home" title="Registrazione">
+          <Tab eventKey="home" title="Login">
             <Col className="px-3">
-              <h3 className="register-title">Registrati</h3>
+              <h4 className="mb-3">Se sei già registrato, accedi..</h4>
+              <Form onSubmit={handleLogin}>
+                <Form.Group className="mb-3" controlId="formGroupEmail">
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Username"
+                    value={usernameLogin}
+                    onChange={(e) => setUsernameLogin(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group
+                  controlId="formGroupPassword"
+                  value={passwordLogin}
+                  onChange={(e) => setPasswordLogin(e.target.value)}
+                >
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control type="password" placeholder="Password" />
+                </Form.Group>
+                <div className="d-flex justify-content-end my-3">
+                  <Button variant="primary" type="submit">
+                    Accedi{" "}
+                  </Button>
+                </div>
+              </Form>
+            </Col>
+          </Tab>
+          <Tab eventKey="profile" title="Registrazione">
+            <Col className="px-3">
+              <h4>Registrati</h4>
               <Form onSubmit={handleRegister}>
-                <Form.Group controlId="formName">
+                <Form.Group controlId="formName" className="mb-3">
                   <Form.Label className="register-label">Nome</Form.Label>
                   <Form.Control
                     type="text"
@@ -114,7 +143,7 @@ function Register() {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="formLastname">
+                <Form.Group controlId="formLastname" className="mb-3">
                   <Form.Label className="register-label">Cognome</Form.Label>
                   <Form.Control
                     type="text"
@@ -126,7 +155,7 @@ function Register() {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="formUsername">
+                <Form.Group controlId="formUsername" className="mb-3">
                   <Form.Label className="register-label">Username</Form.Label>
                   <Form.Control
                     type="text"
@@ -138,7 +167,7 @@ function Register() {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="formEmail">
+                <Form.Group controlId="formEmail" className="mb-3">
                   <Form.Label className="register-label">Email</Form.Label>
                   <Form.Control
                     type="email"
@@ -150,7 +179,7 @@ function Register() {
                   />
                 </Form.Group>
 
-                <Form.Group controlId="formPassword">
+                <Form.Group controlId="formPassword" className="mb-3">
                   <Form.Label className="register-label">Password</Form.Label>
                   <Form.Control
                     type="password"
@@ -175,35 +204,6 @@ function Register() {
                 <div className="d-flex justify-content-end my-3">
                   <Button variant="primary" type="submit">
                     Registrati
-                  </Button>
-                </div>
-              </Form>
-            </Col>
-          </Tab>
-          <Tab eventKey="profile" title="Login">
-            <Col className="px-3">
-              <h3>Se sei già registrato, accedi..</h3>
-              <Form onSubmit={handleLogin}>
-                <Form.Group className="mb-3" controlId="formGroupEmail">
-                  <Form.Label>Username</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="Username"
-                    value={usernameLogin}
-                    onChange={(e) => setUsernameLogin(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group
-                  controlId="formGroupPassword"
-                  value={passwordLogin}
-                  onChange={(e) => setPasswordLogin(e.target.value)}
-                >
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <div className="d-flex justify-content-end my-3">
-                  <Button variant="primary" type="submit">
-                    Accedi{" "}
                   </Button>
                 </div>
               </Form>
