@@ -1,10 +1,16 @@
-.listaFooter a {
-  text-decoration: none;
-  color: black;
+body h3 {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.listaFooter a :hover {
-  text-decoration: underline;
+/*  NAVBAR  */
+
+#dropdownmenu {
+  background-color: #5fda18;
+}
+
+/*  HOME PAGE  */
+.imgcarousel {
 }
 
 .indispensabili {
@@ -26,10 +32,23 @@
   text-align: center;
 }
 
-#dropdownmenu {
-  background-color: #58ab28;
+/*  FOOTER  */
+.colFooter h4 {
+  color: #3f8755;
 }
 
-.colFooter h4 {
+.listaFooter a {
+  text-decoration: none;
+  color: black;
+}
+
+.listaFooter a :hover {
+}
+
+.social {
+  color: rgb(85, 85, 85);
+}
+
+.social :hover {
   color: #3f8755;
 }
