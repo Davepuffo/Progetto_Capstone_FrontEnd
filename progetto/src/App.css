@@ -13,6 +13,12 @@ body h3 {
 .imgcarousel {
 }
 
+#btnnews {
+  background-color: yellow;
+  color: #3f8755;
+  border: 0;
+}
+
 .indispensabili {
   width: 150px;
 }
@@ -30,6 +36,11 @@ body h3 {
   justify-content: center;
   padding: 10px;
   text-align: center;
+}
+
+#btntrue :hover {
+  background-color: #5fda18;
+  border: 1px #5fda18;
 }
 
 /*  FOOTER  */
@@ -51,4 +62,11 @@ body h3 {
 
 .social :hover {
   color: #3f8755;
+}
+
+/* Dettaglio */
+
+#imgDetail img {
+  width: 50%;
+  min-width: 200px;
 }

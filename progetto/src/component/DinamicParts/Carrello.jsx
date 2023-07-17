@@ -103,18 +103,19 @@ function Carrello() {
   return (
     <Container>
       {cart == undefined || cart.length == 0 ? (
-        <Row>
-          <h4 className="d-flex">
-            Il tuo carrello è vuoto,
-            <Link to={"/catalogo/prodotti"}>
-              <h4>inizia subito</h4>
-            </Link>
-            a riempirlo
-          </h4>
+        <Card className="m-3 my-5 p-3 text-center border border-0">
+          <h4>Non hai inserito nessun prodotto nel carrello</h4>
+          <br />
+          <Link to={"/catalogo/prodotti"} id="btntrue">
+            <Button className="px-4" variant="success">
+              <h4>Inizia subito</h4>
+            </Button>
+          </Link>
+          <p className="m-0 my-2">oppure</p>
           <Link to={"/home"}>
             <h4>Torna alla Home</h4>
           </Link>
-        </Row>
+        </Card>
       ) : (
         <>
           <Row>
@@ -266,14 +267,14 @@ function Carrello() {
                                     variant="secondary"
                                     onClick={handleClose}
                                   >
-                                    Close
+                                    Chiudi
                                   </Button>
                                   <Button
                                     variant="primary"
                                     type="submit"
                                     onClick={handleClose}
                                   >
-                                    Save Changes
+                                    Salva
                                   </Button>
                                 </Modal.Footer>
                               </Form>
@@ -294,8 +295,8 @@ function Carrello() {
             </Col>
           </Row>
           {user.indirizziUtente[0] == null ? null : (
-            <Col className="text-end">
-              <Button>
+            <Col className="text-end mt-3" id="btntrue">
+              <Button variant="success">
                 <Link to={"/carrello/pagamento"} className="text-white">
                   Procedi
                 </Link>
@@ -306,41 +307,42 @@ function Carrello() {
       )}
       {cart == undefined || cart.length == 0 ? null : (
         <>
+          <div className="d-flex justify-content-between align-items-center">
+            <h3>Riepilogo:</h3>
+            <div>
+              <p className="d-inline">TOTALE: </p>
+              {cart.reduce(
+                (acc, currentValue) => acc + parseFloat(currentValue.prezzo),
+                0
+              )}
+              €
+            </div>
+          </div>
           {cart.map((item, i) => (
-            <>
-              <h3>Riepilogo:</h3>
-              <Row>
-                <Col key={item.id} xs={2}>
+            <Row className="mb-3">
+              <Col key={item.id} xs={2}>
+                <Link to={"/catalogo/articolo/id/" + item.id}>
                   <img src={item.foto} style={{ height: "100px" }} alt="" />
-                </Col>
-                <Col xs={8}>
-                  {item.nome} <br /> {item.prezzo} €
-                </Col>
-                <Col>
-                  <Button
-                    variant="danger"
-                    onClick={() => {
-                      dispatch({
-                        type: REMOVE_CART,
-                        payload: i,
-                      });
-                    }}
-                  >
-                    <FaTrash />
-                  </Button>
-                </Col>
-              </Row>
-            </>
+                </Link>
+              </Col>
+              <Col xs={8}>
+                {item.nome} <br /> {item.prezzo} €
+              </Col>
+              <Col>
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    dispatch({
+                      type: REMOVE_CART,
+                      payload: i,
+                    });
+                  }}
+                >
+                  <FaTrash />
+                </Button>
+              </Col>
+            </Row>
           ))}
-
-          <Col sm={12} className="font-weight-bold mb-3 ml-4 text-end">
-            <p className="d-inline">TOTALE: </p>
-            {cart.reduce(
-              (acc, currentValue) => acc + parseFloat(currentValue.prezzo),
-              0
-            )}
-            €
-          </Col>
         </>
       )}
     </Container>

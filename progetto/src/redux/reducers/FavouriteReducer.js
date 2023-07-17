@@ -18,6 +18,7 @@ const FavouriteReducer = (state = favState, action) => {
                 }
             } else {
                 return {
+                    ...state,
                     favourite: {
                         content: [...state.favourite.content, action.payload],
                     }
@@ -26,10 +27,11 @@ const FavouriteReducer = (state = favState, action) => {
 
         case REMOVE_FAVOURITE:
             return {
-                ...state,
                 favourite: {
-                    ...state.favourite.content.slice(0, action.payload),
-                    ...state.favourite.content.slice(action.payload + 1),
+                    content: [
+                        ...state.favourite.content.slice(0, action.payload),
+                        ...state.favourite.content.slice(action.payload + 1),
+                    ]
                 },
             }
         default:

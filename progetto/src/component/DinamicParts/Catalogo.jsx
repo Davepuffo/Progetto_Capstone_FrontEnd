@@ -1,20 +1,32 @@
 import { useEffect, useState } from "react";
-import { Col, Row } from "react-bootstrap";
+import { Breadcrumb, Col, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { AiOutlineHeart } from "react-icons/ai";
-import { useDispatch } from "react-redux";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { addFavourite } from "../../redux/actions/FavouriteAction";
+import {
+  REMOVE_FAVOURITE,
+  addFavourite,
+  removeFavourite,
+} from "../../redux/actions/FavouriteAction";
 import { addCart } from "../../redux/actions/CartAction";
 
 function Catalogo() {
   const url = "http://localhost:8080/catalogo/articolo/";
   const [prodotto, setProdotto] = useState([]);
-  const navigate = useNavigate();
+  const favourite = useSelector((state) => state.favourite.favourite.content);
   const params = useParams();
   const dispatch = useDispatch();
+
+  const getPreferiti = (item) => {
+    for (let i = 0; i < favourite.length; i++) {
+      if (item.id == favourite[i].id) {
+        return true;
+      }
+    }
+  };
 
   const getProdotto = () => {
     try {
@@ -32,41 +44,71 @@ function Catalogo() {
 
   return (
     <Container>
-      <h3>Risultati per: {params.animale}</h3>
-      <Row>
+      <Breadcrumb className="my-3">
+        <Breadcrumb.Item>
+          <Link to={"/home"}>Home</Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item>
+          <Link to={"/catalogo/prodotti"}>Catalogo</Link>
+        </Breadcrumb.Item>
+        <Breadcrumb.Item active className="text-capitalize">
+          {params.animale}
+        </Breadcrumb.Item>
+      </Breadcrumb>{" "}
+      <Row className="mb-4">
         {prodotto.map((item) => (
           <Col key={item.id} xs={6} md={4} lg={3}>
             <Card className=" m-2">
-              <Link to={"/catalogo/articolo/id/" + item.id}>
-                <Card.Img variant="top" src={item.foto} />
-              </Link>
-              <Card.Body>
-                <Card.Title>{item.nome}</Card.Title>
-                <div className="d-flex justify-content-between my-2">
+              <Row>
+                <Link to={"/catalogo/articolo/id/" + item.id}>
+                  <Card.Img variant="top" src={item.foto} />
+                </Link>
+                <Card.Body className="mx-2">
+                  <Card.Title>{item.nome}</Card.Title>
                   <Card.Text>
-                    {item.prezzo} €
+                    <div className="d-flex justify-content-between align-items-center m-2 mx-3">
+                      {item.prezzo} €
+                      {getPreferiti(item) == true ? (
+                        <Button
+                          className="p-0 "
+                          variant="transparent"
+                          onClick={() => {
+                            alert("Il prodotto è già nei preferiti");
+                          }}
+                        >
+                          <AiFillHeart
+                            size="30px"
+                            color="red"
+                            className="mx-2"
+                          />
+                        </Button>
+                      ) : (
+                        <Button
+                          className="p-0 "
+                          variant="transparent"
+                          onClick={() => {
+                            dispatch(addFavourite(item));
+                            alert("Aggiunto ai preferiti");
+                          }}
+                        >
+                          <AiOutlineHeart size="30px" className="mx-2" />
+                        </Button>
+                      )}
+                    </div>
+                  </Card.Text>
+                  <Col className="text-center" id="btntrue">
                     <Button
-                      className="p-0"
-                      variant="transparent"
+                      variant="success"
                       onClick={() => {
-                        dispatch(addFavourite(item));
-                        alert("Aggiunto ai preferiti");
+                        dispatch(addCart(item));
+                        alert("Aggiunto al carrello");
                       }}
                     >
-                      <AiOutlineHeart size="30px" className="mx-2" />
+                      Aggiungi al carrello
                     </Button>
-                  </Card.Text>
-                </div>
-                <Button
-                  onClick={() => {
-                    dispatch(addCart(item));
-                    alert("Aggiunto al carrello");
-                  }}
-                  variant="primary"
-                >
-                  Aggiungi al carrello
-                </Button>
-              </Card.Body>
+                  </Col>
+                </Card.Body>
+              </Row>
             </Card>
           </Col>
         ))}

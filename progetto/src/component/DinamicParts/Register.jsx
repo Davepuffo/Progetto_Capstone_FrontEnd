@@ -119,8 +119,8 @@ function Register() {
                   <Form.Label>Password</Form.Label>
                   <Form.Control type="password" placeholder="Password" />
                 </Form.Group>
-                <div className="d-flex justify-content-end my-3">
-                  <Button variant="primary" type="submit">
+                <div className="d-flex justify-content-end my-3" id="btntrue">
+                  <Button variant="success" type="submit">
                     Accedi{" "}
                   </Button>
                 </div>
@@ -201,8 +201,8 @@ function Register() {
             className="register-input"
             />
         </Form.Group> */}
-                <div className="d-flex justify-content-end my-3">
-                  <Button variant="primary" type="submit">
+                <div className="d-flex justify-content-end my-3" id="btntrue">
+                  <Button variant="success" type="submit">
                     Registrati
                   </Button>
                 </div>

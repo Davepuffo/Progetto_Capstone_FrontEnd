@@ -209,7 +209,7 @@ function NavBar() {
                     <>
                       {cart.items.map((cart, i) => (
                         <Card.Body key={i}>
-                          <Row>
+                          <Row className="mb-2">
                             <Col xs={3}>
                               <img
                                 src={cart.foto}
@@ -218,24 +218,27 @@ function NavBar() {
                               />
                             </Col>
                             <Col>
-                              <div>{cart.nome}</div>
-                              {cart.prezzo}€
-                              <Button
-                                variant="danger"
-                                className="text-end"
-                                onClick={() => {
-                                  dispatch({
-                                    type: REMOVE_CART,
-                                    payload: i,
-                                  });
-                                }}
-                              >
-                                <FaTrash />
-                              </Button>
+                              {cart.nome}
+                              <div className="d-flex justify-content-between align-items-center my-2">
+                                {cart.prezzo}€
+                                <Button
+                                  variant="danger"
+                                  className="text-end"
+                                  onClick={() => {
+                                    dispatch({
+                                      type: REMOVE_CART,
+                                      payload: i,
+                                    });
+                                  }}
+                                >
+                                  <FaTrash />
+                                </Button>
+                              </div>
                             </Col>
                           </Row>
                         </Card.Body>
                       ))}
+                      <hr />
                       <Col
                         sm={12}
                         className="font-weight-bold mb-3 ml-4 text-end"
@@ -248,41 +251,33 @@ function NavBar() {
                         )}
                         €
                       </Col>
-                      {user.name == undefined ? (
-                        <Button>
-                          <Link
-                            to={"/register"}
-                            onClick={() => {
-                              setShow(false);
-                            }}
-                            className="text-white"
-                          >
-                            Accedi o registrati per procedere con l'ordine
-                          </Link>
-                        </Button>
-                      ) : (
-                        <Button>
-                          <Link
-                            to={"/carrello"}
-                            onClick={() => {
-                              setShow(false);
-                            }}
-                            className="text-white"
-                          >
-                            Procedi con l'acquisto
-                          </Link>
-                        </Button>
-                      )}
-                      <Button
-                        variant="danger"
-                        onClick={() => {
-                          dispatch({
-                            type: EMPTY_CART,
-                          });
-                        }}
-                      >
-                        Svuota carrello
-                      </Button>
+                      <Col className="text-center" id="btntrue">
+                        {user.name == undefined ? (
+                          <Button variant="success">
+                            <Link
+                              to={"/register"}
+                              onClick={() => {
+                                setShow(false);
+                              }}
+                              className="text-white"
+                            >
+                              Accedi per procedere con l'ordine
+                            </Link>
+                          </Button>
+                        ) : (
+                          <Button variant="success" id="btntrue">
+                            <Link
+                              to={"/carrello"}
+                              onClick={() => {
+                                setShow(false);
+                              }}
+                              className="text-white"
+                            >
+                              Procedi con l'acquisto
+                            </Link>
+                          </Button>
+                        )}
+                      </Col>
                     </>
                   )}
                 </Offcanvas.Body>
@@ -317,10 +312,10 @@ function NavBar() {
           className="w-100 align-items-center justify-content-center text-center"
           id="dropdownmenu"
         >
-          <Navbar.Collapse id="navbarScroll">
+          <Navbar.Collapse id="navbarScroll" className="d-flex">
             <Col className="p-0">
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                <Dropdown.Toggle variant="trasparent" className="text-white">
                   Cane{" "}
                 </Dropdown.Toggle>
 
@@ -343,7 +338,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                <Dropdown.Toggle variant="trasparent" className="text-white">
                   Gatto{" "}
                 </Dropdown.Toggle>
 
@@ -366,7 +361,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                <Dropdown.Toggle variant="trasparent" className="text-white">
                   Pesci{" "}
                 </Dropdown.Toggle>
 
@@ -389,7 +384,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                <Dropdown.Toggle variant="trasparent" className="text-white">
                   Uccelli{" "}
                 </Dropdown.Toggle>
 
@@ -412,7 +407,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" id="dropdown-basic">
+                <Dropdown.Toggle variant="trasparent" className="text-white">
                   Roditori{" "}
                 </Dropdown.Toggle>
 

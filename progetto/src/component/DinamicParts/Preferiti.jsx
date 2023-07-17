@@ -10,36 +10,38 @@ function Preferiti() {
   const dispatch = useDispatch();
   console.log(favourite);
   return (
-    <Container>
-      {favourite == null ? (
-        <Card className="m-3 my-5 p-3 text-center border border-0">
+    <Container className="my-5 w-100">
+      {favourite[0] == null ? (
+        <Card className="m-3 p-3 text-center border border-0">
           <h4>Non hai inserito nessun prodotto nei tuoi preferiti</h4>
           <br />
-          <Link to={"/catalogo/prodotti"}>
-            <Button className="px-4">
+          <Link to={"/catalogo/prodotti"} id="btntrue">
+            <Button className="px-4" variant="success">
               <h4>Inizia subito</h4>
             </Button>
           </Link>
           <p className="m-0 my-2">oppure</p>
           <Link to={"/home"}>
-            <Button className="px-4">
-              <h4>Torna alla Home</h4>
-            </Button>
+            <h4>Torna alla Home</h4>
           </Link>
         </Card>
       ) : (
         <>
           <h3>Prodotti preferiti :</h3>
           {favourite.map((item, i) => (
-            <Row key={item.id} className="my-2">
+            <Row
+              key={item.id}
+              className="my-2 justify-content-center align-items-center"
+            >
               <Col xs={2}>
                 <img src={item.foto} style={{ height: "100px" }} alt="" />
               </Col>
               <Col xs={6}>
                 {item.nome} <br /> {item.prezzo} €
               </Col>
-              <Col xs={3}>
+              <Col xs={3} id="btntrue">
                 <Button
+                  variant="success"
                   onClick={() => {
                     dispatch({
                       type: ADD_CART,
@@ -67,7 +69,6 @@ function Preferiti() {
                   <FaTrash />
                 </Button>
               </Col>
-              <hr />
             </Row>
           ))}
         </>

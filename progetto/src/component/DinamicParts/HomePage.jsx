@@ -108,7 +108,9 @@ function HomePage() {
         <Col xs={12} md={6}>
           <Form className="d-flex align-items-center">
             <Form.Control type="mail" className="h-50" />
-            <Button className="mx-2 btn-">Invia!</Button>
+            <Button className="mx-2" id="btnnews">
+              Invia!
+            </Button>
           </Form>
         </Col>
       </Row>
