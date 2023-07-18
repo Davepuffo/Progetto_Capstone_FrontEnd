@@ -1,4 +1,5 @@
 import {
+  Accordion,
   Button,
   Card,
   Col,
@@ -8,16 +9,20 @@ import {
   Row,
 } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
-import { FaTrash } from "react-icons/fa";
+import { FaPaypal, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { REMOVE_CART } from "../../redux/actions/CartAction";
+import { REMOVE_CART, emptyCart } from "../../redux/actions/CartAction";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { setUser } from "../../redux/actions/UserActions";
 import { BsPencil } from "react-icons/bs";
+import { RiVisaLine } from "react-icons/ri";
+import { BiLogoMastercard } from "react-icons/bi";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 function Carrello() {
   const user = useSelector((state) => state.user.user);
+  console.log(user);
   const auth = useSelector((state) => state.user.auth);
   const cart = useSelector((state) => state.cart.cart.items);
   const dispatch = useDispatch();
@@ -35,6 +40,12 @@ function Carrello() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //pulsante per ordine
+  const [agreement, setAgreement] = useState(false);
+  const handleChange = (event) => {
+    setAgreement(event.target.checked);
+  };
 
   const handleAddress = (e) => {
     e.preventDefault();
@@ -100,6 +111,35 @@ function Carrello() {
       });
   };
 
+  const handleOrder = (e) => {
+    e.preventDefault();
+    const url = "http://localhost:8080/ordine";
+
+    const postData = {
+      id_user: user.id,
+      articoliOrdinati: cart,
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: "Bearer " + auth.accessToken,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        alert("Ordine inviato con successo");
+        dispatch(emptyCart());
+        dispatch(setUser(user));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <Container>
       {cart == undefined || cart.length == 0 ? (
@@ -117,233 +157,261 @@ function Carrello() {
           </Link>
         </Card>
       ) : (
-        <>
-          <Row>
-            <Col>
-              <h3>Inserisci l'indirizzo di consegna:</h3>
-              {user.indirizziUtente[0] == null ? (
-                <Form onSubmit={handleAddress}>
-                  <Row>
-                    <Col xs={8}>
-                      <Form.Group
-                        className="mb-3 d-flex align-items-center"
-                        controlId="formBasicEmail"
-                      >
-                        <Form.Label>Via</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Inserisci la via"
-                          value={via}
-                          onChange={(e) => setVia(e.target.value)}
+        <Row>
+          <Col xs={12} md={6}>
+            {cart == undefined || cart.length == 0 ? null : (
+              <>
+                <div className="d-flex justify-content-between align-items-center">
+                  <h3>Riepilogo:</h3>
+                  <div>
+                    <p className="d-inline">TOTALE: </p>
+                    {cart.reduce(
+                      (acc, currentValue) =>
+                        acc + parseFloat(currentValue.prezzo),
+                      0
+                    )}
+                    €
+                  </div>
+                </div>
+                {cart.map((item, i) => (
+                  <Row className="mb-3">
+                    <Col key={item.id} xs={2}>
+                      <Link to={"/catalogo/articolo/id/" + item.id}>
+                        <img
+                          src={item.foto}
+                          style={{ height: "100px" }}
+                          alt=""
                         />
-                      </Form.Group>
+                      </Link>
+                    </Col>
+                    <Col xs={8}>
+                      {item.nome} <br /> {item.prezzo} €
                     </Col>
                     <Col>
-                      <Form.Group
-                        className="mb-3 d-flex align-items-center"
-                        controlId="formBasicEmail"
+                      <Button
+                        variant="danger"
+                        onClick={() => {
+                          dispatch({
+                            type: REMOVE_CART,
+                            payload: i,
+                          });
+                        }}
                       >
-                        <Form.Label>Civico</Form.Label>
-                        <Form.Control
-                          type="text"
-                          placeholder="Inserisci il civico"
-                          value={civico}
-                          onChange={(e) => setCivico(e.target.value)}
-                        />
-                      </Form.Group>
+                        <FaTrash />
+                      </Button>
                     </Col>
                   </Row>
+                ))}
+              </>
+            )}
+          </Col>
 
-                  <Form.Group
-                    className="mb-3 d-flex align-items-center"
-                    controlId="formBasicEmail"
-                  >
-                    <Form.Label>Città</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Inserisci la città"
-                      value={citta}
-                      onChange={(e) => setCitta(e.target.value)}
-                    />
-                  </Form.Group>
-                  <Form.Group
-                    className="mb-3 d-flex align-items-center"
-                    controlId="formBasicEmail"
-                  >
-                    <Form.Label>Provincia</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Inserisci la provincia"
-                      value={provincia}
-                      onChange={(e) => setProvincia(e.target.value)}
-                    />
-                  </Form.Group>
-
-                  <Button variant="primary" type="submit">
-                    Submit
-                  </Button>
-                </Form>
-              ) : (
+          <Col xs={12} md={6}>
+            <h3>Inserisci l'indirizzo di consegna:</h3>
+            {user.indirizziUtente[0] == null ? (
+              <Form onSubmit={handleAddress}>
                 <Row>
+                  <Col xs={8}>
+                    <Form.Group
+                      className="mb-3 d-flex align-items-center"
+                      controlId="formBasicEmail"
+                    >
+                      <Form.Label>Via</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci la via"
+                        value={via}
+                        onChange={(e) => setVia(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Col>
                   <Col>
-                    <Card>
-                      <Card.Body>
-                        <Card.Title className="d-flex justify-content-between align-items-center">
-                          <div>Indirizzo di {indirizzoConsegna.tipo}</div>
-                          <Button
-                            variant="transparent"
-                            className="p-0"
-                            onClick={handleShow}
-                          >
-                            <BsPencil />
-                          </Button>
-                          <Modal show={show} onHide={handleClose}>
-                            <Modal.Header closeButton>
-                              <Modal.Title>Modal heading</Modal.Title>
-                            </Modal.Header>
-                            <Modal.Body>
-                              <Form onSubmit={changeAddress}>
-                                <Row>
-                                  <Col xs={8}>
-                                    <Form.Group
-                                      className="mb-3 d-flex align-items-center"
-                                      controlId="formBasicEmail"
-                                    >
-                                      <Form.Label>Via</Form.Label>
-                                      <Form.Control
-                                        type="text"
-                                        placeholder="Inserisci la via"
-                                        value={via}
-                                        onChange={(e) => setVia(e.target.value)}
-                                      />
-                                    </Form.Group>
-                                  </Col>
-                                  <Col>
-                                    <Form.Group
-                                      className="mb-3 d-flex align-items-center"
-                                      controlId="formBasicEmail"
-                                    >
-                                      <Form.Label>Civico</Form.Label>
-                                      <Form.Control
-                                        type="text"
-                                        placeholder="Inserisci il civico"
-                                        value={civico}
-                                        onChange={(e) =>
-                                          setCivico(e.target.value)
-                                        }
-                                      />
-                                    </Form.Group>
-                                  </Col>
-                                </Row>
-
-                                <Form.Group
-                                  className="mb-3 d-flex align-items-center"
-                                  controlId="formBasicEmail"
-                                >
-                                  <Form.Label>Città</Form.Label>
-                                  <Form.Control
-                                    type="text"
-                                    placeholder="Inserisci la città"
-                                    value={citta}
-                                    onChange={(e) => setCitta(e.target.value)}
-                                  />
-                                </Form.Group>
-                                <Form.Group
-                                  className="mb-3 d-flex align-items-center"
-                                  controlId="formBasicEmail"
-                                >
-                                  <Form.Label>Provincia</Form.Label>
-                                  <Form.Control
-                                    type="text"
-                                    placeholder="Inserisci la provincia"
-                                    value={provincia}
-                                    onChange={(e) =>
-                                      setProvincia(e.target.value)
-                                    }
-                                  />
-                                </Form.Group>
-                                <Modal.Footer>
-                                  <Button
-                                    variant="secondary"
-                                    onClick={handleClose}
-                                  >
-                                    Chiudi
-                                  </Button>
-                                  <Button
-                                    variant="primary"
-                                    type="submit"
-                                    onClick={handleClose}
-                                  >
-                                    Salva
-                                  </Button>
-                                </Modal.Footer>
-                              </Form>
-                            </Modal.Body>
-                          </Modal>
-                        </Card.Title>
-                        <hr />
-                        <Card.Text>
-                          Via {indirizzoConsegna.via} {indirizzoConsegna.civico}
-                          , <br /> {indirizzoConsegna.citta} (
-                          {indirizzoConsegna.provincia})
-                        </Card.Text>
-                      </Card.Body>
-                    </Card>
+                    <Form.Group
+                      className="mb-3 d-flex align-items-center"
+                      controlId="formBasicEmail"
+                    >
+                      <Form.Label>Civico</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Inserisci il civico"
+                        value={civico}
+                        onChange={(e) => setCivico(e.target.value)}
+                      />
+                    </Form.Group>
                   </Col>
                 </Row>
-              )}
-            </Col>
-          </Row>
-          {user.indirizziUtente[0] == null ? null : (
-            <Col className="text-end mt-3" id="btntrue">
-              <Button variant="success">
-                <Link to={"/carrello/pagamento"} className="text-white">
-                  Procedi
-                </Link>
-              </Button>
-            </Col>
-          )}
-        </>
-      )}
-      {cart == undefined || cart.length == 0 ? null : (
-        <>
-          <div className="d-flex justify-content-between align-items-center">
-            <h3>Riepilogo:</h3>
-            <div>
-              <p className="d-inline">TOTALE: </p>
-              {cart.reduce(
-                (acc, currentValue) => acc + parseFloat(currentValue.prezzo),
-                0
-              )}
-              €
-            </div>
-          </div>
-          {cart.map((item, i) => (
-            <Row className="mb-3">
-              <Col key={item.id} xs={2}>
-                <Link to={"/catalogo/articolo/id/" + item.id}>
-                  <img src={item.foto} style={{ height: "100px" }} alt="" />
-                </Link>
-              </Col>
-              <Col xs={8}>
-                {item.nome} <br /> {item.prezzo} €
-              </Col>
-              <Col>
-                <Button
-                  variant="danger"
-                  onClick={() => {
-                    dispatch({
-                      type: REMOVE_CART,
-                      payload: i,
-                    });
-                  }}
+
+                <Form.Group
+                  className="mb-3 d-flex align-items-center"
+                  controlId="formBasicEmail"
                 >
-                  <FaTrash />
+                  <Form.Label>Città</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Inserisci la città"
+                    value={citta}
+                    onChange={(e) => setCitta(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group
+                  className="mb-3 d-flex align-items-center"
+                  controlId="formBasicEmail"
+                >
+                  <Form.Label>Provincia</Form.Label>
+                  <Form.Control
+                    type="text"
+                    placeholder="Inserisci la provincia"
+                    value={provincia}
+                    onChange={(e) => setProvincia(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Button variant="primary" type="submit">
+                  Submit
                 </Button>
-              </Col>
-            </Row>
-          ))}
-        </>
+              </Form>
+            ) : (
+              <Row>
+                <Col>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title className="d-flex justify-content-between align-items-center">
+                        <p>
+                          {user.name} {user.lastname}
+                        </p>
+                        <Button
+                          variant="transparent"
+                          className="p-0"
+                          onClick={handleShow}
+                        >
+                          <BsPencil />
+                        </Button>
+                      </Card.Title>
+                      <Card.Text>
+                        Via {indirizzoConsegna.via} {indirizzoConsegna.civico}
+                        , <br /> {indirizzoConsegna.citta} (
+                        {indirizzoConsegna.provincia})
+                      </Card.Text>
+                      <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                          <Modal.Title>Modal heading</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                          <Form onSubmit={changeAddress}>
+                            <Row>
+                              <Col xs={8}>
+                                <Form.Group
+                                  className="mb-3 d-flex align-items-center"
+                                  controlId="formBasicEmail"
+                                >
+                                  <Form.Label>Via</Form.Label>
+                                  <Form.Control
+                                    type="text"
+                                    placeholder="Inserisci la via"
+                                    value={via}
+                                    onChange={(e) => setVia(e.target.value)}
+                                  />
+                                </Form.Group>
+                              </Col>
+                              <Col>
+                                <Form.Group
+                                  className="mb-3 d-flex align-items-center"
+                                  controlId="formBasicEmail"
+                                >
+                                  <Form.Label>Civico</Form.Label>
+                                  <Form.Control
+                                    type="text"
+                                    placeholder="Inserisci il civico"
+                                    value={civico}
+                                    onChange={(e) => setCivico(e.target.value)}
+                                  />
+                                </Form.Group>
+                              </Col>
+                            </Row>
+
+                            <Form.Group
+                              className="mb-3 d-flex align-items-center"
+                              controlId="formBasicEmail"
+                            >
+                              <Form.Label>Città</Form.Label>
+                              <Form.Control
+                                type="text"
+                                placeholder="Inserisci la città"
+                                value={citta}
+                                onChange={(e) => setCitta(e.target.value)}
+                              />
+                            </Form.Group>
+                            <Form.Group
+                              className="mb-3 d-flex align-items-center"
+                              controlId="formBasicEmail"
+                            >
+                              <Form.Label>Provincia</Form.Label>
+                              <Form.Control
+                                type="text"
+                                placeholder="Inserisci la provincia"
+                                value={provincia}
+                                onChange={(e) => setProvincia(e.target.value)}
+                              />
+                            </Form.Group>
+                            <Modal.Footer>
+                              <Button variant="secondary" onClick={handleClose}>
+                                Chiudi
+                              </Button>
+                              <Button
+                                variant="primary"
+                                type="submit"
+                                onClick={handleClose}
+                              >
+                                Salva
+                              </Button>
+                            </Modal.Footer>
+                          </Form>
+                        </Modal.Body>
+                      </Modal>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              </Row>
+            )}
+            <h3>Inserisci il metodo di pagamento:</h3>
+            <Form onSubmit={handleOrder}>
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item>
+                  <Accordion.Header>
+                    PayPal <FaPaypal /> o Carta di credito <RiVisaLine />{" "}
+                    <BiLogoMastercard />{" "}
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    <PayPalScriptProvider>
+                      <PayPalButtons />
+                    </PayPalScriptProvider>
+                  </Accordion.Body>
+                </Accordion.Item>
+                <Accordion.Item eventKey="2">
+                  <Accordion.Header>
+                    <Form.Check
+                      aria-label="option 1"
+                      className="me-2"
+                      name="agreement"
+                      onChange={handleChange}
+                    />
+                    Pagamento alla consegna
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    Paga comodamente alla consegna del pacco{" "}
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+              {user.indirizziUtente[0] == null ? null : (
+                <Col className="text-end my-3" id="btntrue">
+                  <Button variant="success" type="submit" disabled={!agreement}>
+                    Procedi
+                  </Button>
+                </Col>
+              )}
+            </Form>
+          </Col>
+        </Row>
       )}
     </Container>
   );
