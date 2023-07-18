@@ -10,7 +10,12 @@ import {
   Tabs,
   Card,
 } from "react-bootstrap";
-import { setToken, setUser } from "../../redux/actions/UserActions";
+import {
+  LOGOUT,
+  logOut,
+  setToken,
+  setUser,
+} from "../../redux/actions/UserActions";
 
 function Register() {
   //impostazioni per registrarsi

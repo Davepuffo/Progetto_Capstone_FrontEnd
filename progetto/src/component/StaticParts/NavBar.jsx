@@ -96,7 +96,7 @@ function NavBar() {
             <Nav.Link>
               <Dropdown drop="down">
                 <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                  {user.name == undefined ? null : (
+                  {user.name == undefined ? undefined : (
                     <p className="d-none d-lg-inline text-white">
                       Ciao {user.username}
                     </p>
@@ -315,9 +315,7 @@ function NavBar() {
           <Navbar.Collapse id="navbarScroll" className="d-flex">
             <Col className="p-0">
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" className="text-white">
-                  Cane{" "}
-                </Dropdown.Toggle>
+                <Dropdown.Toggle variant="trasparent">Cane </Dropdown.Toggle>
 
                 <Dropdown.Menu>
                   <Dropdown.Item
@@ -338,9 +336,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" className="text-white">
-                  Gatto{" "}
-                </Dropdown.Toggle>
+                <Dropdown.Toggle variant="trasparent">Gatto </Dropdown.Toggle>
 
                 <Dropdown.Menu>
                   <Dropdown.Item
@@ -361,9 +357,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" className="text-white">
-                  Pesci{" "}
-                </Dropdown.Toggle>
+                <Dropdown.Toggle variant="trasparent">Pesci </Dropdown.Toggle>
 
                 <Dropdown.Menu>
                   <Dropdown.Item
@@ -384,9 +378,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" className="text-white">
-                  Uccelli{" "}
-                </Dropdown.Toggle>
+                <Dropdown.Toggle variant="trasparent">Uccelli </Dropdown.Toggle>
 
                 <Dropdown.Menu>
                   <Dropdown.Item
@@ -407,7 +399,7 @@ function NavBar() {
             </Col>
             <Col>
               <Dropdown>
-                <Dropdown.Toggle variant="trasparent" className="text-white">
+                <Dropdown.Toggle variant="trasparent">
                   Roditori{" "}
                 </Dropdown.Toggle>
 

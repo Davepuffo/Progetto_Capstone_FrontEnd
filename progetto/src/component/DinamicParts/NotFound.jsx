@@ -13,8 +13,8 @@ const NotFound = () => {
         Pagine non trovata, prova con un'altra ricerca o torna alla Home.
       </h4>{" "}
       <br />
-      <Link to={"/home"}>
-        <Button className="px-4">
+      <Link to={"/home"} id="btntrue">
+        <Button className="px-4" variant="success">
           <h4>Torna alla Home</h4>
         </Button>
       </Link>
