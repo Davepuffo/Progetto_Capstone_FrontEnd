@@ -7,7 +7,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { MdAccountCircle } from "react-icons/md";
 import {
@@ -21,7 +21,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { EMPTY_CART, REMOVE_CART } from "../../redux/actions/CartAction";
 import { FaTrash } from "react-icons/fa";
-import { logOut, setToken, setUser } from "../../redux/actions/UserActions";
+import {
+  SET_USER,
+  logOut,
+  setToken,
+  setUser,
+} from "../../redux/actions/UserActions";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -40,45 +45,12 @@ function NavBar() {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
+  console.log(query);
 
   //login
   //impostazioni per loggarsi
   const [usernameLogin, setUsernameLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
-
-  const handleLogin = (e) => {
-    e.preventDefault();
-    const url = "http://localhost:8080/api/auth/login";
-
-    var dataObj = {
-      username: String,
-      accessToken: String,
-      tokenType: String,
-    };
-
-    const postDataLogin = {
-      username: usernameLogin,
-      password: passwordLogin,
-    };
-
-    fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postDataLogin),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        dataObj = data;
-        console.log(data);
-        dispatch(setToken(dataObj));
-        dispatch(setUser(dataObj));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
 
   return (
     <Navbar expand="lg" className="bg-success p-0 " sticky="top">
@@ -96,7 +68,7 @@ function NavBar() {
             <Nav.Link>
               <Dropdown drop="down">
                 <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                  {user.name == undefined ? undefined : (
+                  {user.name === undefined ? undefined : (
                     <p className="d-none d-lg-inline text-white">
                       Ciao {user.username}
                     </p>
@@ -106,7 +78,7 @@ function NavBar() {
                 <Dropdown.Menu>
                   {user.name == undefined ? (
                     <Container>
-                      <Form onSubmit={handleLogin}>
+                      <Form>
                         <Form.Group className="mb-3" controlId="formGroupEmail">
                           <Form.Label>Username</Form.Label>
                           <Form.Control
@@ -146,6 +118,8 @@ function NavBar() {
                           </Col>
                         </Row>
                         <Button
+                          variant="success"
+                          id="btntrue"
                           onClick={() => {
                             navigate("/profile");
                           }}
@@ -155,6 +129,7 @@ function NavBar() {
                         </Button>
                         <Dropdown.Divider />
                         <Button
+                          variant="danger"
                           onClick={() => {
                             dispatch(logOut());
                             navigate("/home");
@@ -295,6 +270,7 @@ function NavBar() {
                 className="me-2"
                 aria-label="Search"
                 onChange={handleChange}
+                required
               />
               <Button
                 onClick={() => {

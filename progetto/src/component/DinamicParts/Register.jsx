@@ -16,8 +16,11 @@ import {
   setToken,
   setUser,
 } from "../../redux/actions/UserActions";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
+  const navigate = useNavigate();
+
   //impostazioni per registrarsi
   const [name, setName] = useState("");
   const [lastname, setLastname] = useState("");
@@ -86,9 +89,9 @@ function Register() {
       .then((response) => response.json())
       .then((data) => {
         dataObj = data;
-        console.log(data);
         dispatch(setToken(dataObj));
         dispatch(setUser(dataObj));
+        navigate("/home");
       })
       .catch((error) => {
         console.error(error);

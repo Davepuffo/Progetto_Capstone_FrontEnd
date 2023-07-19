@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 
 function Profilo() {
   const user = useSelector((state) => state.user.user);
-  console.log(user.ordiniEffettuati[0].articoliOrdinati);
 
   return (
     <Container>
@@ -11,43 +10,47 @@ function Profilo() {
         <Col xs={12} md={6} className="my-3">
           <Card>
             <Card.Title>
-              <h3>Il mio profilo:</h3>
+              <h3 className="text-center">Il mio profilo:</h3>
             </Card.Title>
-            <hr />
+            <hr className="m-0" />
             <Card.Body>
               <p>
                 Nome e Cognome : {user.name} {user.lastname}
               </p>
               <p>Username: {user.username}</p>
               <p>Email: {user.email}</p>
+              <br />
+              <h4>Indirizzo di consegna:</h4>
+              {user.indirizziUtente[0] == null ? (
+                <div>Non ci sono indirizzi inseriti per questo profilo</div>
+              ) : (
+                user.indirizziUtente.map((indirizzo) => (
+                  <Col key={indirizzo.id}>
+                    <p>
+                      Via {indirizzo.via} {indirizzo.civico},
+                    </p>
+                    <p>
+                      {indirizzo.citta} ({indirizzo.provincia}){" "}
+                    </p>
+                  </Col>
+                ))
+              )}
             </Card.Body>
           </Card>
-          <br />
-          <h3 className="my-3">Indirizzi:</h3>
-          {user.indirizziUtente[0] == null ? (
-            <div>Non ci sono indirizzi inseriti per questo profilo</div>
-          ) : (
-            user.indirizziUtente.map((indirizzo) => (
-              <>
-                <p>Indirizzo di {indirizzo.tipo}:</p>
-                <p>
-                  Via {indirizzo.via} {indirizzo.civico}, {indirizzo.citta} (
-                  {indirizzo.provincia}){" "}
-                </p>
-                <hr />
-              </>
-            ))
-          )}
         </Col>
         <Col xs={12} md={6} className="my-3">
-          <Card>
+          <Card className="mb-3">
             <Card.Title>
-              <h3 className="my-3">Ordini:</h3>
+              <h3 className="text-center">Ordini:</h3>
             </Card.Title>
-            <hr />
-            <Card.Body>
-              {user.ordiniEffettuati.map((item) => (
-                <>
+            <hr className="m-0" />
+            {user.ordiniEffettuati[0] == null ? (
+              <Card.Body>
+                Non ci sono ordini inseriti per questo profilo
+              </Card.Body>
+            ) : (
+              user.ordiniEffettuati.map((item) => (
+                <Card.Body key={item.id}>
                   <p>
                     Ordine n: {item.id} Data: {item.data}
                   </p>
@@ -64,13 +67,26 @@ function Profilo() {
                       />
                     </>
                   ))}
-                  <hr />
-                </>
-              ))}
-            </Card.Body>
+                </Card.Body>
+              ))
+            )}
           </Card>
 
-          <h3 className="my-3">Fatture:</h3>
+          <Card>
+            <Card.Title>
+              <h3 className="text-center">Fatture:</h3>
+            </Card.Title>
+            <hr className="m-0" />
+            {user.fattureRicevute[0] == null ? (
+              <Card.Body>
+                Non ci sono fatture inserite per questo profilo
+              </Card.Body>
+            ) : (
+              user.fattureRicevute.map((fattura) => (
+                <Card.Body key={fattura.id}>we</Card.Body>
+              ))
+            )}
+          </Card>
         </Col>
       </Row>
     </Container>

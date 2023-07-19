@@ -12,7 +12,7 @@ import Form from "react-bootstrap/Form";
 import { FaPaypal, FaTrash } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { REMOVE_CART, emptyCart } from "../../redux/actions/CartAction";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { setUser } from "../../redux/actions/UserActions";
 import { BsPencil } from "react-icons/bs";
@@ -26,6 +26,7 @@ function Carrello() {
   const auth = useSelector((state) => state.user.auth);
   const cart = useSelector((state) => state.cart.cart.items);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   //impostazioni per indirizzo consegna
   const [via, setVia] = useState("");
@@ -72,7 +73,8 @@ function Carrello() {
       .then((data) => {
         console.log(data);
         dispatch(setUser(user));
-        alert("indirizzo aggiornato");
+        alert("indirizzo inserito");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -105,6 +107,7 @@ function Carrello() {
         console.log(data);
         dispatch(setUser(user));
         alert("Indirizzo modificato");
+        window.location.reload();
       })
       .catch((error) => {
         console.error(error);
@@ -134,9 +137,10 @@ function Carrello() {
         alert("Ordine inviato con successo");
         dispatch(emptyCart());
         dispatch(setUser(user));
+        navigate("/home");
       })
       .catch((error) => {
-        console.error(error);
+        alert(error);
       });
   };
 
@@ -174,8 +178,8 @@ function Carrello() {
                   </div>
                 </div>
                 {cart.map((item, i) => (
-                  <Row className="mb-3">
-                    <Col key={item.id} xs={2}>
+                  <Row key={item.id} className="mb-3">
+                    <Col xs={2}>
                       <Link to={"/catalogo/articolo/id/" + item.id}>
                         <img
                           src={item.foto}
@@ -267,7 +271,7 @@ function Carrello() {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">
-                  Submit
+                  Salva
                 </Button>
               </Form>
             ) : (
