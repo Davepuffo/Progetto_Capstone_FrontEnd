@@ -18,17 +18,19 @@ function HomePage() {
 
   return (
     <>
-      <Carousel
-        activeIndex={index}
-        onSelect={handleSelect}
-        style={{ maxHeight: "400px" }}
-      >
+      <Carousel activeIndex={index} onSelect={handleSelect}>
         <Carousel.Item className="text-center h-100" interval={4000}>
           <img
             className="img-fluid"
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw317c4c1f/Carosello%20home/Summerdays_homepage_1920x693.jpg"
             alt="First slide"
-            style={{ maxHeight: "400px" }}
+          />
+        </Carousel.Item>
+        <Carousel.Item className="text-center h-100" interval={4000}>
+          <img
+            className=""
+            src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw3265db9d/Carosello%20home/PrezziProtetti_categoria_1920x693_1.jpg"
+            alt="First slide"
           />
         </Carousel.Item>
       </Carousel>

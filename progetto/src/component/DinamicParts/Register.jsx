@@ -1,21 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {
-  Container,
-  Form,
-  Button,
-  Row,
-  Col,
-  Tab,
-  Tabs,
-  Card,
-} from "react-bootstrap";
-import {
-  LOGOUT,
-  logOut,
-  setToken,
-  setUser,
-} from "../../redux/actions/UserActions";
+import { Container, Form, Button, Col, Tab, Tabs, Card } from "react-bootstrap";
+import { setToken, setUser } from "../../redux/actions/UserActions";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -137,7 +123,7 @@ function Register() {
           </Tab>
           <Tab eventKey="profile" title="Registrazione">
             <Col className="px-3">
-              <h4>Registrati</h4>
+              <h4 className="mb-3">Registrati</h4>
               <Form onSubmit={handleRegister}>
                 <Form.Group controlId="formName" className="mb-3">
                   <Form.Label className="register-label">Nome</Form.Label>

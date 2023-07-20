@@ -14,7 +14,7 @@ const NotFound = () => {
       </h4>{" "}
       <br />
       <Link to={"/home"} id="btntrue">
-        <Button className="px-4" variant="success">
+        <Button className="px-4 py-2" variant="success">
           <h4>Torna alla Home</h4>
         </Button>
       </Link>

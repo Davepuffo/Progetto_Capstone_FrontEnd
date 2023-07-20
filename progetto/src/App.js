@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from './component/StaticParts/NavBar';
@@ -12,7 +11,6 @@ import Profilo from './component/DinamicParts/Profilo';
 import Catalogo from './component/DinamicParts/Catalogo';
 import Carrello from './component/DinamicParts/Carrello';
 import Preferiti from './component/DinamicParts/Preferiti';
-import Pagamento from './component/DinamicParts/Pagamento';
 import Ricerca from './component/DinamicParts/Ricerca';
 
 function App() {
@@ -29,7 +27,6 @@ function App() {
           <Route path='/register' element={<Register />} />
           <Route path='/catalogo/articolo/id/:id' element={<Dettaglio />} />
           <Route path='/carrello' element={<Carrello />} />
-          <Route path='/carrello/pagamento' element={<Pagamento />} />
           <Route path='/preferiti' element={<Preferiti />} />
         </Routes>
         <Footer />

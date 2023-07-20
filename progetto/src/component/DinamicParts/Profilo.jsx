@@ -1,5 +1,6 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 function Profilo() {
   const user = useSelector((state) => state.user.user);
@@ -9,7 +10,7 @@ function Profilo() {
       <Row className="text-start">
         <Col xs={12} md={6} className="my-3">
           <Card>
-            <Card.Title>
+            <Card.Title id="cardtitle">
               <h3 className="text-center">Il mio profilo:</h3>
             </Card.Title>
             <hr className="m-0" />
@@ -25,12 +26,12 @@ function Profilo() {
                 <div>Non ci sono indirizzi inseriti per questo profilo</div>
               ) : (
                 user.indirizziUtente.map((indirizzo) => (
-                  <Col key={indirizzo.id}>
+                  <Col key={indirizzo.id} className="my-2">
                     <p>
                       Via {indirizzo.via} {indirizzo.civico},
                     </p>
                     <p>
-                      {indirizzo.citta} ({indirizzo.provincia}){" "}
+                      {indirizzo.cap} {indirizzo.citta} ({indirizzo.provincia}){" "}
                     </p>
                   </Col>
                 ))
@@ -40,7 +41,7 @@ function Profilo() {
         </Col>
         <Col xs={12} md={6} className="my-3">
           <Card className="mb-3">
-            <Card.Title>
+            <Card.Title id="cardtitle">
               <h3 className="text-center">Ordini:</h3>
             </Card.Title>
             <hr className="m-0" />
@@ -60,11 +61,13 @@ function Profilo() {
                   <p>Articoli ordinati:</p>
                   {item.articoliOrdinati.map((articolo) => (
                     <>
-                      <img
-                        src={articolo.foto}
-                        style={{ width: "40px" }}
-                        alt=""
-                      />
+                      <Link to={"/catalogo/articolo/id/" + articolo.id}>
+                        <img
+                          src={articolo.foto}
+                          style={{ width: "80px" }}
+                          alt=""
+                        />
+                      </Link>
                     </>
                   ))}
                 </Card.Body>
@@ -73,7 +76,7 @@ function Profilo() {
           </Card>
 
           <Card>
-            <Card.Title>
+            <Card.Title id="cardtitle">
               <h3 className="text-center">Fatture:</h3>
             </Card.Title>
             <hr className="m-0" />

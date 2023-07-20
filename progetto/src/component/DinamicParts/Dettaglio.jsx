@@ -3,12 +3,9 @@ import Container from "react-bootstrap/Container";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import { Breadcrumb, Button } from "react-bootstrap";
-import { ADD_CART, addCart } from "../../redux/actions/CartAction";
+import { addCart } from "../../redux/actions/CartAction";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ADD_FAVOURITE,
-  addFavourite,
-} from "../../redux/actions/FavouriteAction";
+import { addFavourite } from "../../redux/actions/FavouriteAction";
 import { Link, useParams } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 

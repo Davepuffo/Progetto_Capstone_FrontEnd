@@ -5,12 +5,8 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import {
-  REMOVE_FAVOURITE,
-  addFavourite,
-  removeFavourite,
-} from "../../redux/actions/FavouriteAction";
+import { Link, useParams } from "react-router-dom";
+import { addFavourite } from "../../redux/actions/FavouriteAction";
 import { addCart } from "../../redux/actions/CartAction";
 
 function Ricerca() {

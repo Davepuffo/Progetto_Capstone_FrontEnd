@@ -13,7 +13,14 @@ import { BsFillArrowUpCircleFill } from "react-icons/bs";
 function Footer() {
   return (
     <Container fluid className="text-center">
-      <Row className="flex-column py-3 bg-success align-items-center">Logo</Row>
+      <Row className="flex-column bg-success align-items-center text-center">
+        <Col>
+          <img
+            src={window.location.origin + "/logo.png"}
+            style={{ height: "100px" }}
+          />
+        </Col>
+      </Row>
       <Row className="my-3 colFooter">
         <Col>
           <ul className="list-unstyled">

@@ -22,6 +22,7 @@ const UserReducer = (state = initialState, action) => {
 
         case SET_TOKEN:
             return {
+                ...state,
                 auth: action.payload,
             };
 

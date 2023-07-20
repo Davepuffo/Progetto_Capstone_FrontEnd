@@ -6,8 +6,7 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { MdAccountCircle } from "react-icons/md";
 import {
@@ -19,14 +18,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-import { EMPTY_CART, REMOVE_CART } from "../../redux/actions/CartAction";
+import { REMOVE_CART } from "../../redux/actions/CartAction";
 import { FaTrash } from "react-icons/fa";
-import {
-  SET_USER,
-  logOut,
-  setToken,
-  setUser,
-} from "../../redux/actions/UserActions";
+import { logOut } from "../../redux/actions/UserActions";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -45,7 +39,6 @@ function NavBar() {
   const handleChange = (e) => {
     setQuery(e.target.value);
   };
-  console.log(query);
 
   //login
   //impostazioni per loggarsi
@@ -55,7 +48,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-success p-0 " sticky="top">
       <Container fluid className="flex-column p-0">
-        <Row className="w-100 align-items-center py-2 mt-2 justify-content-between">
+        <Row className="w-100 align-items-center pt-2 m-0  justify-content-between">
           <Col
             xs={3}
             className="d-flex justify-content-end align-items-center p-0"
@@ -68,7 +61,7 @@ function NavBar() {
             <Nav.Link>
               <Dropdown drop="down">
                 <Dropdown.Toggle variant="transparent" id="dropdown-basic">
-                  {user.name === undefined ? undefined : (
+                  {user.name == undefined ? undefined : (
                     <p className="d-none d-lg-inline text-white">
                       Ciao {user.username}
                     </p>
@@ -100,7 +93,7 @@ function NavBar() {
                             placeholder="Password"
                           />
                         </Form.Group>
-                        <Button variant="primary" type="submit">
+                        <Button variant="success" id="btntrue" type="submit">
                           Accedi
                         </Button>
                       </Form>
@@ -145,7 +138,12 @@ function NavBar() {
             </Nav.Link>
           </Col>
           <Col xs={6} md={3} className="text-center">
-            <Link to={"/home"}>Logo</Link>
+            <Link to={"/home"}>
+              <img
+                src={window.location.origin + "/logo.png"}
+                style={{ height: "100px" }}
+              />
+            </Link>
           </Col>
 
           <Col
@@ -228,7 +226,7 @@ function NavBar() {
                       </Col>
                       <Col className="text-center" id="btntrue">
                         {user.name == undefined ? (
-                          <Button variant="success">
+                          <Button variant="success" id="btntrue">
                             <Link
                               to={"/register"}
                               onClick={() => {
@@ -269,12 +267,14 @@ function NavBar() {
                 placeholder="Cerca qui!"
                 className="me-2"
                 aria-label="Search"
+                value={query}
                 onChange={handleChange}
                 required
               />
               <Button
                 onClick={() => {
                   navigate("/catalogo/cerca/" + query);
+                  setQuery("");
                 }}
                 variant="outline-transparent"
               >
