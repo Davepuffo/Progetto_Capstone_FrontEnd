@@ -48,7 +48,7 @@ function NavBar() {
   return (
     <Navbar expand="lg" className="bg-success p-0 " sticky="top">
       <Container fluid className="flex-column p-0">
-        <Row className="w-100 align-items-center pt-2 m-0  justify-content-between">
+        <Row className="w-100 align-items-center m-0  justify-content-between">
           <Col
             xs={3}
             className="d-flex justify-content-end align-items-center p-0"
@@ -141,7 +141,7 @@ function NavBar() {
             <Link to={"/home"}>
               <img
                 src={window.location.origin + "/logo.png"}
-                style={{ height: "100px" }}
+                style={{ height: "80px" }}
               />
             </Link>
           </Col>
@@ -259,14 +259,15 @@ function NavBar() {
           </Col>
         </Row>
 
-        <Row className="w-100 justify-content-center">
-          <Col md={6} className="w-75">
-            <Form className="d-flex my-2">
+        <Row className="w-100 mb-2">
+          <Col md={6} className="w-100">
+            <Form className="d-flex w-100 align-items-center justify-content-center">
               <Form.Control
                 type="search"
                 placeholder="Cerca qui!"
                 className="me-2"
                 aria-label="Search"
+                style={{ height: "30px", maxWidth: "800px" }}
                 value={query}
                 onChange={handleChange}
                 required
@@ -277,6 +278,7 @@ function NavBar() {
                   setQuery("");
                 }}
                 variant="outline-transparent"
+                className="p-0"
               >
                 <AiOutlineSearch size="30px" color="white" />
               </Button>
@@ -301,12 +303,8 @@ function NavBar() {
                   >
                     Tutti i prodotti per il tuo cane
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Alimentazione</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Accessori</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -317,17 +315,13 @@ function NavBar() {
                 <Dropdown.Menu>
                   <Dropdown.Item
                     onClick={() => {
-                      navigate("/catalogo/cane");
+                      navigate("/catalogo/gatto");
                     }}
                   >
-                    Tutti i prodotti per il tuo cane
+                    Tutti i prodotti per il tuo gatto
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Alimentazione</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Accessori</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -338,17 +332,13 @@ function NavBar() {
                 <Dropdown.Menu>
                   <Dropdown.Item
                     onClick={() => {
-                      navigate("/catalogo/cane");
+                      navigate("/catalogo/pesci");
                     }}
                   >
-                    Tutti i prodotti per il tuo cane
+                    Tutti i prodotti per i tuoi pesci
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Alimentazione</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Accessori</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -359,17 +349,13 @@ function NavBar() {
                 <Dropdown.Menu>
                   <Dropdown.Item
                     onClick={() => {
-                      navigate("/catalogo/cane");
+                      navigate("/catalogo/uccelli");
                     }}
                   >
-                    Tutti i prodotti per il tuo cane
+                    Tutti i prodotti per i tuoi uccelli
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Alimentazione</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Accessori</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>
@@ -382,17 +368,13 @@ function NavBar() {
                 <Dropdown.Menu>
                   <Dropdown.Item
                     onClick={() => {
-                      navigate("/catalogo/cane");
+                      navigate("/catalogo/roditori");
                     }}
                   >
-                    Tutti i prodotti per il tuo cane
+                    Tutti i prodotti per i tuoi roditori
                   </Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">Alimentazione</Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">Accessori</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
             </Col>

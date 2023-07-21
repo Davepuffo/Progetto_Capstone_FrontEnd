@@ -17,7 +17,7 @@ function Footer() {
         <Col>
           <img
             src={window.location.origin + "/logo.png"}
-            style={{ height: "100px" }}
+            style={{ height: "80px" }}
           />
         </Col>
       </Row>
