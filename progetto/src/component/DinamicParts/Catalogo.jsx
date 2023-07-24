@@ -18,6 +18,7 @@ function Catalogo() {
   const [prodotto, setProdotto] = useState([]);
   const favourite = useSelector((state) => state.favourite.favourite.content);
   const params = useParams();
+  console.log(params);
   const dispatch = useDispatch();
 
   const getPreferiti = (item) => {
@@ -40,7 +41,7 @@ function Catalogo() {
 
   useEffect(() => {
     getProdotto();
-  }, []);
+  }, [params]);
 
   return (
     <Container>
@@ -66,9 +67,7 @@ function Catalogo() {
               <Link to={"/home"}>Home</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>
-              <Link to={"/catalogo/prodotti"} onClick={getProdotto()}>
-                Catalogo
-              </Link>
+              <Link to={"/catalogo/prodotti"}>Catalogo</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item active className="text-capitalize">
               {params.animale}

@@ -15,6 +15,10 @@ function Register() {
   const [password, setPassword] = useState("");
   const [roles, setRoles] = useState([]);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   //impostazioni per loggarsi
   const dispatch = useDispatch();
   const [usernameLogin, setUsernameLogin] = useState("");
@@ -77,6 +81,7 @@ function Register() {
         dataObj = data;
         dispatch(setToken(dataObj));
         dispatch(setUser(dataObj));
+        scrollToTop();
         navigate("/home");
       })
       .catch((error) => {

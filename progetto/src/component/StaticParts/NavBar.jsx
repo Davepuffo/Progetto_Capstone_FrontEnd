@@ -20,7 +20,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { REMOVE_CART } from "../../redux/actions/CartAction";
 import { FaTrash } from "react-icons/fa";
-import { logOut } from "../../redux/actions/UserActions";
+import { logOut, setToken, setUser } from "../../redux/actions/UserActions";
 
 function NavBar() {
   const dispatch = useDispatch();
@@ -34,6 +34,10 @@ function NavBar() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   //Search bar
   const [query, setQuery] = useState("");
   const handleChange = (e) => {
@@ -44,6 +48,40 @@ function NavBar() {
   //impostazioni per loggarsi
   const [usernameLogin, setUsernameLogin] = useState("");
   const [passwordLogin, setPasswordLogin] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const url = "http://localhost:8080/api/auth/login";
+
+    var dataObj = {
+      username: String,
+      accessToken: String,
+      tokenType: String,
+    };
+
+    const postDataLogin = {
+      username: usernameLogin,
+      password: passwordLogin,
+    };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postDataLogin),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        dataObj = data;
+        dispatch(setToken(dataObj));
+        dispatch(setUser(dataObj));
+        navigate("/home");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   return (
     <Navbar expand="lg" className="bg-success p-0 " sticky="top">
@@ -71,7 +109,7 @@ function NavBar() {
                 <Dropdown.Menu>
                   {user.name == undefined ? (
                     <Container>
-                      <Form>
+                      <Form onSubmit={handleLogin}>
                         <Form.Group className="mb-3" controlId="formGroupEmail">
                           <Form.Label>Username</Form.Label>
                           <Form.Control
@@ -138,7 +176,7 @@ function NavBar() {
             </Nav.Link>
           </Col>
           <Col xs={6} md={3} className="text-center">
-            <Link to={"/home"}>
+            <Link to={"/home"} onClick={scrollToTop()}>
               <img
                 src={window.location.origin + "/logo.png"}
                 style={{ height: "80px" }}
@@ -299,6 +337,7 @@ function NavBar() {
                   <Dropdown.Item
                     onClick={() => {
                       navigate("/catalogo/cane");
+                      scrollToTop();
                     }}
                   >
                     Tutti i prodotti per il tuo cane
@@ -316,6 +355,7 @@ function NavBar() {
                   <Dropdown.Item
                     onClick={() => {
                       navigate("/catalogo/gatto");
+                      scrollToTop();
                     }}
                   >
                     Tutti i prodotti per il tuo gatto
@@ -333,6 +373,7 @@ function NavBar() {
                   <Dropdown.Item
                     onClick={() => {
                       navigate("/catalogo/pesci");
+                      scrollToTop();
                     }}
                   >
                     Tutti i prodotti per i tuoi pesci
@@ -350,6 +391,7 @@ function NavBar() {
                   <Dropdown.Item
                     onClick={() => {
                       navigate("/catalogo/uccelli");
+                      scrollToTop();
                     }}
                   >
                     Tutti i prodotti per i tuoi uccelli
@@ -369,6 +411,7 @@ function NavBar() {
                   <Dropdown.Item
                     onClick={() => {
                       navigate("/catalogo/roditori");
+                      scrollToTop();
                     }}
                   >
                     Tutti i prodotti per i tuoi roditori

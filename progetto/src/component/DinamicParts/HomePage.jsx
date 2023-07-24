@@ -18,6 +18,10 @@ function HomePage() {
     setIndex(selectedIndex);
   };
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  };
+
   return (
     <Container fluid className="p-0">
       <Carousel
@@ -78,7 +82,9 @@ function HomePage() {
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dwfc3fa028/cane.png"
             alt=""
             onClick={() => {
+              scrollToTop();
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Cane</p>
@@ -88,6 +94,7 @@ function HomePage() {
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw4519b017/gatto.png"
             alt=""
             onClick={() => {
+              scrollToTop();
               navigate("/catalogo/gatto");
             }}
           />
@@ -98,6 +105,7 @@ function HomePage() {
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dweb9469fd/acquariologia.png"
             alt=""
             onClick={() => {
+              scrollToTop();
               navigate("/catalogo/pesci");
             }}
           />
@@ -108,6 +116,7 @@ function HomePage() {
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dwc5161b3c/uccelli.png"
             alt=""
             onClick={() => {
+              scrollToTop();
               navigate("/catalogo/uccelli");
             }}
           />
@@ -118,6 +127,7 @@ function HomePage() {
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw6f289a6f/roditori.png"
             alt=""
             onClick={() => {
+              scrollToTop();
               navigate("/catalogo/roditori");
             }}
           />
@@ -149,7 +159,8 @@ function HomePage() {
           </Form>
         </Col>
       </Row>
-      <Row className="w-100 m-4 align-items-center justify-content-between">
+      <Row className="w-100 m-3 align-items-center justify-content-between">
+        <h3>Promozioni</h3>
         <Col xs={4} className="p-0 text-center">
           <img
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw4394253e/Carosello%20home/Promo_weekend_PPP_LUGLIO406x260.jpg"
@@ -183,6 +194,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Secco</p>
@@ -194,6 +206,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Ciotole</p>
@@ -205,6 +218,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Guinzagli</p>
@@ -216,6 +230,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Giochi</p>
@@ -227,6 +242,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Cucce</p>
@@ -238,6 +254,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/cane");
+              scrollToTop();
             }}
           />
           <p>Igiene</p>
@@ -250,6 +267,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/gatto");
+              scrollToTop();
             }}
           />
           <p>Secco</p>
@@ -261,6 +279,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/gatto");
+              scrollToTop();
             }}
           />
           <p>Umido</p>
@@ -272,6 +291,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/gatto");
+              scrollToTop();
             }}
           />
           <p>Tiragraffi</p>
@@ -283,6 +303,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/gatto");
+              scrollToTop();
             }}
           />
           <p>Sabbie</p>
@@ -294,6 +315,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/gatto");
+              scrollToTop();
             }}
           />
           <p>Toilette</p>
@@ -305,6 +327,7 @@ function HomePage() {
             className="indispensabili"
             onClick={() => {
               navigate("/catalogo/gatto");
+              scrollToTop();
             }}
           />
           <p>Trasporto</p>
