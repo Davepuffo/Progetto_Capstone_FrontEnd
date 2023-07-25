@@ -56,12 +56,13 @@ Backend:
 
  - Importa il Database: Ora che hai installato PostgreSQL, puoi importare il database "capstone.sql" fornito nella repository del backend. Assicurati di aver scaricato il file "capstone.sql" e posizionalo nella directory desiderata. Quindi, utilizza il seguente comando per importare il database:
 
-bash
-Copy code
-psql -U postgres -d nomedeldatabase -f /percorso/del/file/capstone.sql
+ ```
+ psql -U postgres -d capstone -f /percorso/del/file/capstone.sql
+ ```
+
 Sostituisci "nomedeldatabase" con il nome del database in cui desideri importare i dati e "/percorso/del/file/capstone.sql" con il percorso completo del file "capstone.sql" sul tuo sistema.
 
-3. **Configurazione del Database**:  e importa il database che trovi nella repository "capstone.sql". Quindi, apri il progetto backend nel tuo IDE preferito e trova il file di configurazione del database (denominato "application.properties"). Modifica le seguenti informazioni per collegarti al tuo database PostgreSQL:
+3. **Configurazione del Database**: Quindi, apri il progetto backend nel tuo IDE preferito e trova il file di configurazione del database (denominato "application.properties"). Modifica le seguenti informazioni per collegarti al tuo database PostgreSQL:
 
    ```
    spring.datasource.url=jdbc:postgresql://localhost:5432/capstone
@@ -73,7 +74,7 @@ Sostituisci "passwordpostgres" con la password dell'utente "postgres" che hai im
 
 4. **Avvio del Backend**: Dopo aver configurato il database e importato i dati, puoi avviare il backend. Utilizzando il tuo IDE o il terminale, avvia l'applicazione backend.
 
-   Se stai utilizzando un IDE, cerca il file principale dell'applicazione Java (solitamente chiamato "Application.java" o simile) e avvialo facendo clic destro sul file e selezionando "Run" o "Avvia".
+   Se stai utilizzando un IDE avvialo facendo clic destro sul file e selezionando "Run" o "Avvia" con l'opzione Spring Boot.
 
    Se stai utilizzando il terminale, naviga nella cartella del progetto backend e digita il seguente comando:
 
@@ -91,10 +92,12 @@ Accesso come Amministratore:
 Puoi accedere come amministratore utilizzando le seguenti credenziali:
  - Username: davideg
  - Password: prova1234
+
 L'account amministratore ti fornirà accesso a funzionalità avanzate, tra cui la gestione dei prodotti e degli utenti.
 
 Accesso come Utente Normale:
 Se preferisci, puoi anche registrarti come utente normale direttamente dal sito. Fai clic sul pulsante "Registrati" e fornisci le informazioni richieste per creare un nuovo account utente.
 
-Ora hai installato sia il lato frontend che il lato backend del sito. Puoi visitare il sito all'indirizzo http://localhost:3000 e iniziare ad esplorare i prodotti e utilizzare le funzionalità di acquisto. Se hai bisogno di assistenza o incontri problemi durante l'installazione, non esitare a contattarmi. 
+Ora hai installato sia il lato frontend che il lato backend del sito. Puoi visitare il sito all'indirizzo http://localhost:3000 e iniziare ad esplorare i prodotti e utilizzare le funzionalità di acquisto. 
+Se hai bisogno di assistenza o incontri problemi durante l'installazione, non esitare a contattarmi. 
 Buon divertimento!
