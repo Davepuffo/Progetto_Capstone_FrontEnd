@@ -7,15 +7,15 @@ Questo repository contiene il codice sorgente per il progetto di un e-commerce d
 Il progetto è stato sviluppato utilizzando diverse tecnologie per garantire un'esperienza utente ottimale e una solida infrastruttura. Di seguito sono elencate le principali tecnologie impiegate:
 
 Frontend:
-HTML: per la struttura delle pagine web.
-CSS: per lo stile e il design del sito.
-JavaScript: per l'interattività e la gestione delle funzionalità lato client.
-React: come libreria JavaScript per la creazione di interfacce utente reattive e riutilizzabili.
+ - HTML: per la struttura delle pagine web.
+ - CSS: per lo stile e il design del sito.
+ - JavaScript: per l'interattività e la gestione delle funzionalità lato client.
+ - React: come libreria JavaScript per la creazione di interfacce utente reattive e riutilizzabili.
 
 Backend:
-Java: come linguaggio di programmazione principale per il backend.
-PostgreSQL: come sistema di gestione del database per memorizzare e gestire i dati dei prodotti, degli utenti e degli ordini.
-SQL: come linguaggio per interrogare e manipolare il database.
+ - Java: come linguaggio di programmazione principale per il backend.
+ - PostgreSQL: come sistema di gestione del database per memorizzare e gestire i dati dei prodotti, degli utenti e degli ordini.
+ - SQL: come linguaggio per interrogare e manipolare il database.
 
 ## Installazione del Lato Frontend:
 
