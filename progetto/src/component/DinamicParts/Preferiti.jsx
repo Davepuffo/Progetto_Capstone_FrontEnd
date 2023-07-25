@@ -8,7 +8,6 @@ import { ADD_CART } from "../../redux/actions/CartAction";
 function Preferiti() {
   const favourite = useSelector((state) => state.favourite.favourite.content);
   const dispatch = useDispatch();
-  console.log(favourite);
   return (
     <Container className="my-5 w-100">
       {favourite[0] == null ? (
