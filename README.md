@@ -50,15 +50,15 @@ Backend:
    ```
    
 2. **Importazione del Database**:
- - Scarica PostgreSQL: Vai al sito ufficiale di PostgreSQL (https://www.postgresql.org/) e seleziona la versione più recente disponibile per il tuo sistema operativo. Segui le istruzioni di installazione specifiche per il tuo sistema.
+ - Scarica PostgreSQL: Vai al sito ufficiale di PostgreSQL (https://www.postgresql.org/) e seleziona la versione più recente disponibile     per il tuo sistema operativo. Segui le istruzioni di installazione specifiche per il tuo sistema.
 
- - Configura l'utente amministratore: Durante l'installazione, ti verrà chiesto di impostare una password per l'utente amministratore predefinito "postgres". Ricorda questa password, poiché la useremo successivamente per configurare il backend.
+ - Configura l'utente amministratore: Durante l'installazione, ti verrà chiesto di impostare una password per l'utente amministratore        predefinito "postgres". Ricorda questa password, poiché la useremo successivamente per configurare il backend.
 
- - Importa il Database: Ora che hai installato PostgreSQL, puoi importare il database "capstone.sql" fornito nella repository del backend. Assicurati di aver scaricato il file "capstone.sql" e posizionalo nella directory desiderata. Quindi, utilizza il seguente comando per importare il database:
+ - Importa il Database: Ora che hai installato PostgreSQL, puoi importare il database "capstone.sql" fornito nella repository del            backend. Assicurati di aver scaricato il file "capstone.sql" e posizionalo nella directory desiderata. Quindi, utilizza il seguente       comando per importare il database:
 
- ```
- psql -U postgres -d capstone -f /percorso/del/file/capstone.sql
- ```
+   ```
+   psql -U postgres -d capstone -f /percorso/del/file/capstone.sql
+   ```
 
 Sostituisci "nomedeldatabase" con il nome del database in cui desideri importare i dati e "/percorso/del/file/capstone.sql" con il percorso completo del file "capstone.sql" sul tuo sistema.
 
@@ -74,28 +74,28 @@ Sostituisci "passwordpostgres" con la password dell'utente "postgres" che hai im
 
 4. **Avvio del Backend**: Dopo aver configurato il database e importato i dati, puoi avviare il backend. Utilizzando il tuo IDE o il terminale, avvia l'applicazione backend.
 
-   Se stai utilizzando un IDE avvialo facendo clic destro sul file e selezionando "Run" o "Avvia" con l'opzione Spring Boot.
+Se stai utilizzando un IDE avvialo facendo clic destro sul file e selezionando "Run" o "Avvia" con l'opzione Spring Boot.
 
-   Se stai utilizzando il terminale, naviga nella cartella del progetto backend e digita il seguente comando:
+Se stai utilizzando il terminale, naviga nella cartella del progetto backend e digita il seguente comando:
 
    ```
    mvn spring-boot:run
    ```
 
-   L'applicazione backend verrà avviata e sarà pronta ad accettare le richieste del frontend.
+L'applicazione backend verrà avviata e sarà pronta ad accettare le richieste del frontend.
 
 
 ## Accesso al Sito
 Benvenuti nel nostro sito di e-commerce per prodotti di animali! Abbiamo due modi per accedere al sito:
 
-Accesso come Amministratore:
+### Accesso come Amministratore:
 Puoi accedere come amministratore utilizzando le seguenti credenziali:
  - Username: davideg
  - Password: prova1234
 
 L'account amministratore ti fornirà accesso a funzionalità avanzate, tra cui la gestione dei prodotti e degli utenti.
 
-Accesso come Utente Normale:
+### Accesso come Utente Normale:
 Se preferisci, puoi anche registrarti come utente normale direttamente dal sito. Fai clic sul pulsante "Registrati" e fornisci le informazioni richieste per creare un nuovo account utente.
 
 Ora hai installato sia il lato frontend che il lato backend del sito. Puoi visitare il sito all'indirizzo http://localhost:3000 e iniziare ad esplorare i prodotti e utilizzare le funzionalità di acquisto. 
