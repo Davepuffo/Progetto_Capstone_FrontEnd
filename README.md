@@ -1,6 +1,8 @@
 # Benvenuti nel progetto Capstone "Urban Pet"
 
-Questo repository contiene il codice sorgente per il progetto di un e-commerce di prodotti per animali chiamato "Urban Pet". Il progetto è un'applicazione web che offre una vasta gamma di prodotti per animali domestici. Gli utenti possono navigare attraverso diverse categorie di prodotti, aggiungere articoli al carrello e completare l'ordine con facilità. Inoltre, l'applicazione offre funzionalità per la gestione degli account degli utenti, inclusa la possibilità di aggiungere prodotti preferiti alla lista dei desideri e visualizzare lo storico degli ordini.
+Questo repository contiene il codice sorgente per il progetto di un e-commerce di prodotti per animali chiamato "Urban Pet". 
+Il progetto è un'applicazione web che offre una vasta gamma di prodotti per animali domestici, gli utenti possono navigare attraverso diverse categorie di prodotti, aggiungere articoli al carrello e completare l'ordine con facilità. 
+Inoltre, l'applicazione offre funzionalità per la gestione degli account degli utenti, inclusa la possibilità di aggiungere prodotti preferiti alla lista dei desideri e visualizzare lo storico degli ordini.
 
 ## Tecnologie utilizzate
 
@@ -25,14 +27,13 @@ Backend:
    git clone https://github.com/davidegalli93/Progetto_Capstone_FrontEnd
    ```
 
-2. **Installazione delle Dipendenze**: Assicurati di avere Node.js e npm installati sul tuo sistema. Naviga nella cartella del progetto frontend appena clonato e apri il terminale o il prompt dei comandi. Esegui il seguente comando per installare tutte le dipendenze necessarie:
+2. **Installazione delle Dipendenze**: Assicurati di avere Node.js e npm installati sul tuo sistema. Entra nella cartella chiamata  "progetto" appena clonata e apri il terminale o il prompt dei comandi. Esegui il seguente comando per installare tutte le dipendenze necessarie:
 
    ```
-   cd progetto
    npm install
    ```
 
-3. **Avvio dell'Applicazione**: Una volta configurato l'endpoint del backend, puoi avviare l'applicazione frontend utilizzando il seguente comando:
+3. **Avvio dell'Applicazione**: Puoi avviare l'applicazione frontend utilizzando il seguente comando:
 
    ```
    npm start
@@ -47,18 +48,28 @@ Backend:
    ```
    git clone https://github.com/davidegalli93/Progetto_Capstone
    ```
+   
+2. **Importazione del Database**:
+ - Scarica PostgreSQL: Vai al sito ufficiale di PostgreSQL (https://www.postgresql.org/) e seleziona la versione più recente disponibile per il tuo sistema operativo. Segui le istruzioni di installazione specifiche per il tuo sistema.
 
-2. **Configurazione del Database**: Installa PostgreSQL se non l'hai già fatto e assicurati di avere un database vuoto creato per il progetto. Quindi, apri il progetto backend nel tuo IDE preferito e trova il file di configurazione del database (potrebbe essere denominato "application.properties" o simile). Modifica le seguenti informazioni per collegarti al tuo database PostgreSQL:
+ - Configura l'utente amministratore: Durante l'installazione, ti verrà chiesto di impostare una password per l'utente amministratore predefinito "postgres". Ricorda questa password, poiché la useremo successivamente per configurare il backend.
+
+ - Importa il Database: Ora che hai installato PostgreSQL, puoi importare il database "capstone.sql" fornito nella repository del backend. Assicurati di aver scaricato il file "capstone.sql" e posizionalo nella directory desiderata. Quindi, utilizza il seguente comando per importare il database:
+
+bash
+Copy code
+psql -U postgres -d nomedeldatabase -f /percorso/del/file/capstone.sql
+Sostituisci "nomedeldatabase" con il nome del database in cui desideri importare i dati e "/percorso/del/file/capstone.sql" con il percorso completo del file "capstone.sql" sul tuo sistema.
+
+3. **Configurazione del Database**:  e importa il database che trovi nella repository "capstone.sql". Quindi, apri il progetto backend nel tuo IDE preferito e trova il file di configurazione del database (denominato "application.properties"). Modifica le seguenti informazioni per collegarti al tuo database PostgreSQL:
 
    ```
-   spring.datasource.url=jdbc:postgresql://localhost:5432/nomedeldatabase
+   spring.datasource.url=jdbc:postgresql://localhost:5432/capstone
    spring.datasource.username=postgres
    spring.datasource.password=passwordpostgres
    ```
 
-   Sostituisci "nomedeldatabase" con il nome del database creato e "passwordpostgres" con la password dell'utente "postgres" che hai impostato durante l'installazione di PostgreSQL.
-
-3. **Importazione del Database**: Nel tuo IDE o nel terminale, esegui il codice SQL per importare lo schema del database e i dati iniziali. Di solito, puoi trovare il file SQL all'interno della repository backend (ad esempio "database.sql"). Esegui il codice SQL per creare le tabelle e popolare il database con dati iniziali (se disponibili).
+Sostituisci "passwordpostgres" con la password dell'utente "postgres" che hai impostato durante l'installazione di PostgreSQL.
 
 4. **Avvio del Backend**: Dopo aver configurato il database e importato i dati, puoi avviare il backend. Utilizzando il tuo IDE o il terminale, avvia l'applicazione backend.
 
@@ -78,11 +89,12 @@ Benvenuti nel nostro sito di e-commerce per prodotti di animali! Abbiamo due mod
 
 Accesso come Amministratore:
 Puoi accedere come amministratore utilizzando le seguenti credenziali:
-Username: davideg
-Password: prova1234
+ - Username: davideg
+ - Password: prova1234
 L'account amministratore ti fornirà accesso a funzionalità avanzate, tra cui la gestione dei prodotti e degli utenti.
 
 Accesso come Utente Normale:
 Se preferisci, puoi anche registrarti come utente normale direttamente dal sito. Fai clic sul pulsante "Registrati" e fornisci le informazioni richieste per creare un nuovo account utente.
 
-Ora hai installato sia il lato frontend che il lato backend del sito di e-commerce per prodotti di animali. Puoi visitare il sito all'indirizzo http://localhost:3000 e iniziare ad esplorare i prodotti e utilizzare le funzionalità di acquisto. Se hai bisogno di assistenza o incontri problemi durante l'installazione, non esitare a contattarci. Buon divertimento!
+Ora hai installato sia il lato frontend che il lato backend del sito. Puoi visitare il sito all'indirizzo http://localhost:3000 e iniziare ad esplorare i prodotti e utilizzare le funzionalità di acquisto. Se hai bisogno di assistenza o incontri problemi durante l'installazione, non esitare a contattarmi. 
+Buon divertimento!
