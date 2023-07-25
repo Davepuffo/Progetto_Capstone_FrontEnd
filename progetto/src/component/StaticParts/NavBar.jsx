@@ -44,6 +44,20 @@ function NavBar() {
     setQuery(e.target.value);
   };
 
+  const getRuoli = () => {
+    if (user.name == undefined) {
+      return undefined;
+    } else {
+      for (let i = 0; i < user.roles.length; i++) {
+        if (user.roles[i].roleName == "ROLE_ADMIN") {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  };
+
   //login
   //impostazioni per loggarsi
   const [usernameLogin, setUsernameLogin] = useState("");
@@ -142,32 +156,44 @@ function NavBar() {
                     <>
                       <Dropdown.Item>
                         <Row>
-                          <Col>
+                          <Col className="mb-2">
                             <h4>
                               {user.name} {user.lastname}
                             </h4>
                           </Col>
+                          <Button
+                            variant="success"
+                            id="btntrue"
+                            onClick={() => {
+                              navigate("/profile");
+                            }}
+                            className="w-100 my-2"
+                          >
+                            Visualizza profilo
+                          </Button>
+                          {getRuoli() == true ? (
+                            <Button
+                              variant="success"
+                              id="btntrue"
+                              onClick={() => {
+                                navigate("/admin");
+                              }}
+                              className="w-100 my-2"
+                            >
+                              Sezione Admin
+                            </Button>
+                          ) : undefined}
+                          <Dropdown.Divider />
+                          <Button
+                            variant="danger"
+                            onClick={() => {
+                              dispatch(logOut());
+                              navigate("/home");
+                            }}
+                          >
+                            Esci
+                          </Button>
                         </Row>
-                        <Button
-                          variant="success"
-                          id="btntrue"
-                          onClick={() => {
-                            navigate("/profile");
-                          }}
-                          className="w-100 my-2"
-                        >
-                          Visualizza profilo
-                        </Button>
-                        <Dropdown.Divider />
-                        <Button
-                          variant="danger"
-                          onClick={() => {
-                            dispatch(logOut());
-                            navigate("/home");
-                          }}
-                        >
-                          Esci
-                        </Button>
                       </Dropdown.Item>
                     </>
                   )}

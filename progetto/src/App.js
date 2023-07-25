@@ -12,6 +12,7 @@ import Catalogo from './component/DinamicParts/Catalogo';
 import Carrello from './component/DinamicParts/Carrello';
 import Preferiti from './component/DinamicParts/Preferiti';
 import Ricerca from './component/DinamicParts/Ricerca';
+import Admin from './component/DinamicParts/Admin';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/catalogo/:animale" element={<Catalogo />} />
           <Route path="/catalogo/cerca/:nome" element={<Ricerca />} />
           <Route path='/profile' element={<Profilo />} />
+          <Route path='/admin' element={<Admin />} />
           <Route path='/register' element={<Register />} />
           <Route path='/catalogo/articolo/id/:id' element={<Dettaglio />} />
           <Route path='/carrello' element={<Carrello />} />

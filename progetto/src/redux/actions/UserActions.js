@@ -4,7 +4,6 @@ export const LOGOUT = "LOGOUT";
 
 export const setUser = (profile) => {
     const url = "http://localhost:8080/user/" + profile.username;
-    console.log(url);
     return (dispatch) => {
         try {
             fetch(url, {
@@ -14,7 +13,6 @@ export const setUser = (profile) => {
             })
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data)
                     dispatch({
                         type: SET_USER,
                         payload: data,

@@ -71,7 +71,6 @@ function Carrello() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         dispatch(setUser(user));
         alert("indirizzo inserito");
         window.location.reload();
@@ -105,7 +104,6 @@ function Carrello() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         dispatch(setUser(user));
         alert("Indirizzo modificato");
         window.location.reload();
@@ -134,7 +132,6 @@ function Carrello() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         alert("Ordine inviato con successo");
         dispatch(emptyCart());
         dispatch(setUser(user));

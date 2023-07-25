@@ -18,7 +18,6 @@ function Catalogo() {
   const [prodotto, setProdotto] = useState([]);
   const favourite = useSelector((state) => state.favourite.favourite.content);
   const params = useParams();
-  console.log(params);
   const dispatch = useDispatch();
 
   const getPreferiti = (item) => {
