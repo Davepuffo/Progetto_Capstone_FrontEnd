@@ -9,8 +9,16 @@ import {
 } from "react-icons/fa";
 
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import { AiFillGithub, AiOutlineMail } from "react-icons/ai";
+import { Button, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 function Footer() {
+  const renderTooltip = (props) => (
+    <Tooltip id="button-tooltip" {...props}>
+      davidegalli104@gmail.com
+    </Tooltip>
+  );
+
   return (
     <Container fluid className="text-center">
       <Row className="flex-column bg-success align-items-center text-center">
@@ -58,22 +66,34 @@ function Footer() {
         </Col>
         <Col>
           <h4 className="mb-4">Seguici su:</h4>
-          <a href="#" className="social">
+          <a href="https://www.instagram.com/davepuffo/" className="social">
             {" "}
             <FaInstagram size="30px" className="mx-2" />
           </a>
-          <a href="#" className="social">
+          <a
+            href="https://www.linkedin.com/in/davide-galli-/"
+            className="social"
+          >
             {" "}
             <FaLinkedin size="30px" className="mx-2" />
           </a>
-          <a href="#" className="social">
+          <a
+            href="https://github.com/davidegalli93/Progetto_Capstone_FrontEnd"
+            className="social"
+          >
             {" "}
-            <FaTwitter size="30px" className="mx-2" />
+            <AiFillGithub size="30px" className="mx-2" />
           </a>
-          <a href="#" className="social">
-            {" "}
-            <FaFacebookSquare size="30px" className="mx-2" />
-          </a>
+          <OverlayTrigger
+            placement="bottom"
+            delay={{ show: 250, hide: 400 }}
+            overlay={renderTooltip}
+          >
+            <Button variant="transparent" className="m-0 p-0">
+              {" "}
+              <AiOutlineMail size="30px" className="mx-2" />
+            </Button>
+          </OverlayTrigger>
         </Col>
       </Row>
 
@@ -81,9 +101,10 @@ function Footer() {
         <hr />
         <Col>
           <p>
-            AGRIFARMA S.P.A a socio unico Via Roncaglia, 12, 20146-Milano (MI)
-            P.IVA 01067670990 C.F 01421010487 Capitale Sociale Euro 1.121.363,00
-            I.V Iscritta al registro imprese di MILANO MONZA BRIANZA E LODI
+            FALLAGROSSA S.P.A a socio unico Via Marconi, 43, 20082-Milano (MI)
+            P.IVA 3456789876543 C.F 34567898765 Capitale Sociale Euro
+            1.500.000,00 I.V Iscritta al registro imprese di MILANO MONZA
+            BRIANZA E LODI
           </p>
         </Col>
         <hr />

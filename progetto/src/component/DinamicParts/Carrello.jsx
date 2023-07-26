@@ -439,13 +439,12 @@ function Carrello() {
                   </Accordion.Body>
                 </Accordion.Item>
               </Accordion>
-              {user.indirizziUtente[0] == null ? null : (
-                <Col className="text-end my-3" id="btntrue">
-                  <Button variant="success" type="submit" disabled={!agreement}>
-                    Procedi
-                  </Button>
-                </Col>
-              )}
+
+              <Col className="text-end my-3" id="btntrue">
+                <Button variant="success" type="submit" disabled={!agreement}>
+                  Procedi
+                </Button>
+              </Col>
             </Form>
           </Col>
         </Row>

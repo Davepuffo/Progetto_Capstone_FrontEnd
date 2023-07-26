@@ -33,26 +33,42 @@ function HomePage() {
         <Carousel.Item
           className="text-center"
           style={{ maxHeight: "500px" }}
-          interval={4000}
+          interval={5000}
         >
           <img
             className="img-fluid"
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw317c4c1f/Carosello%20home/Summerdays_homepage_1920x693.jpg"
             alt="First slide"
             id="slideCarousel"
+            style={{ maxHeight: "450px" }}
           />
         </Carousel.Item>
 
         <Carousel.Item
           className="text-center"
           style={{ maxHeight: "500px" }}
-          interval={4000}
+          interval={5000}
         >
           <img
             className=""
             src="https://www.isoladeitesori.it/dw/image/v2/BGRZ_PRD/on/demandware.static/-/Sites-idt-it-Library/default/dw3265db9d/Carosello%20home/PrezziProtetti_categoria_1920x693_1.jpg"
             alt="First slide"
             id="slideCarousel"
+            style={{ height: "450px" }}
+          />
+        </Carousel.Item>
+
+        <Carousel.Item
+          className="text-center"
+          style={{ maxHeight: "500px" }}
+          interval={5000}
+        >
+          <img
+            className=""
+            src="https://arcaplanet.vtexassets.com/unsafe/fit-in/1352x400/center/middle/https%3A%2F%2Farcaplanet.vtexassets.com%2Fassets%2Fvtex.file-manager-graphql%2Fimages%2Fd7d5542e-91af-405b-a4b3-f9259661d6c1___2c36b68768d8a2b16426ebeb9336e594.png"
+            alt="First slide"
+            id="slideCarousel"
+            style={{ height: "450px" }}
           />
         </Carousel.Item>
       </Carousel>
